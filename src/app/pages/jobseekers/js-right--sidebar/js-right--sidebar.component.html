@@ -1,13 +1,16 @@
 <div class="sigle-top-job">
     <div class="top-job-company-image">
        <h3>Availability</h3>
-       <p>More than 30 hrs a week</p>
+       <p *ngIf="!(userInfo | async)?.availability">Availability Not Updated</p>
+<p *ngIf="(userInfo | async)?.availability!='fulltime' && (userInfo | async)?.availability">Available a Maximum of {{(userInfo | async)?.availability}} Hours a week</p>
+      <p *ngIf="((userInfo | async)?.availability)=='fulltime' && (userInfo | async)?.availability"> Available for a full-time oppotunity</p>
+       <p></p>
     </div>
     <div class="top-job-company-desc">
       <div class="single-resume-feild feild-flex-2">
         <div class="single-input">
            <label for="contry">Select Availability:</label>
-           <select id="contry">
+           <select id="contry" #availability>
               <option value="10">Less than 10 hrs a week</option>
               <option value="15">10-15 hrs a week</option>
               <option value="20">15-20hrs a week</option>
@@ -21,25 +24,26 @@
        
      </div>
        <div class="top-job-company-btn">
-          <a href="#" class="jobguru-btn-2">Save changes</a>
+          <button class=" btn jobguru-btn-2" (click)="updateAvailability(availability)">Save changes</button>
        </div>
     </div>
  </div>
  <div class="sigle-top-job">
   <div class="top-job-company-image">
      <h3>Language</h3>
-     <p>Native English</p>
+     <p *ngIf="(userInfo | async)?.language">{{(userInfo | async)?.language?.fluency}}   {{(userInfo | async)?.language?.language}}</p>
   </div>
   <div class="top-job-company-desc">
     <div class="single-resume-feild feild-flex-2">
       <div class="single-input">
          <label for="contry">Language:</label>
-         <select id="contry">
-            <option>German</option>
-            <option>Spanish</option>
-            <option>French</option>
-            <option>Russian</option>
-            <option selected>English</option>
+         <select #language>
+            <option value="English">English</option>
+            <option value="german">German</option>
+            <option value="spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="Russian">Russian</option>
+           
            
             
          </select>
@@ -49,11 +53,11 @@
    <div class="single-resume-feild feild-flex-2">
     <div class="single-input">
        <label for="contry">Fluency</label>
-       <select id="contry">
-          <option>Basic</option>
-          <option>Fluent</option>
-          <option>Conversational</option>
-          <option>Native/Bilingual</option>
+       <select #fluency>
+          <option value="Basic">Basic</option>
+          <option value="Fluent">Fluent</option>
+          <option value="Conversational">Conversational</option>
+          <option value="Native/Bilingual">Native/Bilingual</option>
        
           
        </select>
@@ -61,7 +65,7 @@
    
  </div>
      <div class="top-job-company-btn">
-        <a href="#" class="jobguru-btn-2">Save changes</a>
+        <button class="btn jobguru-btn-2" (click)="updateLanguage(language,fluency)">Save changes</button>
      </div>
   </div>
 </div>

@@ -86,6 +86,32 @@ uid:any;
         this.snackbar.open("Social info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
     });;
   }
+  saveAvailability(availability){
+    return this.firestore.collection("jobSeekers").doc(this.uid).update({
+        availability: availability
+    }).then(() => {
+        this.snackbar.open("Availability was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      })
+      .catch((error) => {
+    
+        this.firestore.doc('jobSeekers/${this.uid}')
+          .set({
+              availability: availability
+          });
+          this.snackbar.open("Availability was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      });;
+  }
+  saveLanguage(language){
+    return this.firestore.collection("jobSeekers").doc(this.uid).update(language).then(() => {
+        this.snackbar.open("Language was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      })
+      .catch((error) => {
+    
+        this.firestore.doc('jobSeekers/${this.uid}')
+          .set(language);
+          this.snackbar.open("Langauage was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      });;
+  }
   
   states=[
     {
