@@ -1,0 +1,178 @@
+<app-header>
+
+</app-header>
+<section class="jobguru-breadcromb-area">
+    
+    
+  </section>
+  
+  
+ <!-- Breadcromb Area End -->
+  
+  
+ <!-- Candidate Dashboard Area Start -->
+ <section class="candidate-dashboard-area section_70">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-2 col-md-12">
+             <app-js-profile-side-bar></app-js-profile-side-bar>
+          </div>
+          <div class="col-lg-7 col-md-12">
+             <div class="dashboard-right">
+                <div class="candidate-profile">
+                   <div class="candidate-single-profile-info">
+                      <div class="single-resume-feild resume-avatar">
+                         <div class="resume-image">
+                            <img src="assets/img/author.jpg" alt="resume avatar">
+                            <div class="resume-avatar-hover">
+                               <div class="resume-avatar-upload">
+                                  <p>
+                                     <i class="fa fa-pencil"></i>
+                                     Edit
+                                  </p>
+                                  <input type="file">
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="candidate-single-profile-info" >
+                      <form>
+                         <div class="resume-box">
+                            <h3>My Profile</h3>
+                            <div class="single-resume-feild ">
+                              <div class="single-input">
+                                 <label for="Bio">Proffessional Title</label>
+                                 <input  [value]="(userInfo | async)?.title" #proffessionalTitle >
+                              </div>
+                              <div class="single-input">
+                             <button class="btn jobguru-btn-2" (click)="updateTitle(proffessionalTitle)">Save Title</button>  
+                             </div>
+                           </div>
+                            
+                            <div class="single-resume-feild ">
+                               <div class="single-input">
+                                  <label for="Bio">Proffessional Summary:</label>
+                                  <textarea id="Bio" #summary>{{(userInfo | async)?.summary}}</textarea>
+                               </div>
+                               <div class="single-input">
+                              <button class="btn jobguru-btn-2" (click)="updateSumamry(summary)">Save Overview</button>  
+                              </div>
+                            </div>
+                            <div class="single-resume-feild ">
+                              <div class="single-input">
+                                 <label for="Bio">Skills</label>
+                                <input type="text" placeholder="skill" #myskill > 
+                                </div>
+                                <div class="single-input">
+                                    <button class="btn jobguru-btn-2" (click)="addSkill(myskill)">Add Skill</button>  
+                                </div>
+                                <div class="single-input">
+                                  <div class="row">
+                                    <div class="col-sm-4" *ngFor="let skill of (userInfo | async)?.skills">
+                                        <span class="notification primary"  id="signUpSuccess">
+                                            <span>{{skill}}
+                                            </span>
+                                            <button class="close-ntf" type="button" (click)="removeSkill(skill)">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                          </span>
+                                    </div>
+                                    
+                                  </div>
+                                    
+                                 
+                                 </div>
+                               
+                             
+                           </div>
+                         </div>
+                         <div class="resume-box">
+                            <h3>Contact Information</h3>
+                            <div class="single-resume-feild feild-flex-2">
+                               <div class="single-input">
+                                  <label for="Phone">Phone:</label>
+                                  <input type="text"[attr.value]="(userInfo | async)?.phoneNumber ? (userInfo | async)?.phoneNumber : null" #phone>
+                               </div>
+                               <div class="single-input">
+                                  <label for="Email">Secondary Phone:</label>
+                                  <input type="text" [attr.value]="(userInfo | async)?.secondaryPhoneNumber ? (userInfo | async)?.secondaryPhoneNumber : null" #secondaryPhoneNumber>
+                               </div>
+                            </div>
+                            <div class="single-resume-feild feild-flex-2">
+                               <div class="single-input">
+                                  <label for="contry">State:</label>
+                                  <select #state>
+                                     <option  *ngIf="(userInfo | async)?.state" [value]="(userInfo | async)?.state"  >{{(userInfo | async)?.state}}</option>
+                                     <option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</option>
+                                  </select>
+                               </div>
+                               <div class="single-input">
+                                  <label for="City">City:</label>
+                                  <input type="text" [attr.value]="(userInfo | async)?.city ? (userInfo | async)?.city : null" #city>
+                               </div>
+                            </div>
+                            <div class="single-resume-feild feild-flex-2">
+                               <div class="single-input">
+                                  <label for="Zip">Zip:</label>
+                                  <input type="text" #zip [attr.value]="(userInfo | async)?.zip ? (userInfo | async)?.zip : null">
+                               </div>
+                               <div class="single-input">
+                                  <label for="Address22">Address:</label>
+                                  <input type="text" [attr.value]="(userInfo | async)?.address ? (userInfo | async)?.address : null"  #address>
+                               </div>
+                            </div>
+                            <div class="single-resume-feild feild-flex-2">
+                              <button class="btn jobguru-btn-2" (click)="saveContactInfo(phone,secondaryPhoneNumber,state,zip,address)">Save Contact Info</button>  
+                            </div>
+                         </div>
+                         <div class="resume-box">
+                            <h3>social link</h3>
+                            <div class="single-resume-feild feild-flex-2">
+                               <div class="single-input">
+                                  <label for="twitter">
+                                  <i class="fa fa-twitter twitter"></i>
+                                  twitter
+                                  </label>
+                                  <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter">
+                               </div>
+                               <div class="single-input">
+                                  <label for="twitter">
+                                  <i class="fa fa-facebook facebook"></i>
+                                  facebook
+                                  </label>
+                                  <input type="text" value="https://www.twitter.com/" id="facebook" name="facebook">
+                               </div>
+                            </div>
+                            <div class="single-resume-feild feild-flex-2">
+                               <div class="single-input">
+                                  <label for="google">
+                                  <i class="fa fa-google-plus google"></i>
+                                  Google
+                                  </label>
+                                  <input type="text" value="https://www.google.com/" id="google" name="twitter">
+                               </div>
+                               <div class="single-input">
+                                  <label for="linkedin">
+                                  <i class="fa fa-linkedin linkedin"></i>
+                                  linkedin
+                                  </label>
+                                  <input type="text" value="https://www.linkedin.com/" id="linkedin" name="twitter">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="submit-resume">
+                            <button type="submit">Update Social Links</button>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-lg-3 col-md-12 dashboard-left-border">
+            <app-js-right--sidebar></app-js-right--sidebar>
+          </div>
+       </div>
+    </div>
+ </section>
+<app-footer></app-footer>

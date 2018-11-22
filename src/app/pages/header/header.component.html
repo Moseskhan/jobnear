@@ -1,0 +1,160 @@
+<!-- Header Area Start -->
+<header class="jobguru-header-area stick-top forsticky page-header">
+  <div class="menu-animation">
+     <div class="container-fluid">
+        <div class="row">
+           <div class="col-lg-2">
+              <div class="site-logo">
+                 <a href="index.html">
+                
+                 </a>
+              </div>
+              <!-- Responsive Menu Start -->
+              <div class="jobguru-responsive-menu"></div>
+              <!-- Responsive Menu Start -->
+           </div>
+           <div class="col-lg-6">
+              <div class="header-menu">
+                 <nav id="navigation">
+                    <ul id="jobguru_navigation">
+                       <li class="active has-children">
+                          <a routerlink="">home</a>
+                         
+                       </li>
+                       <li class=" has-children">
+                          <a href="#">for candidates</a>
+                          <ul>
+                              <li><a routerLink="/accounts/employee/signup">Sign Up</a></li>
+                              <li><a routerLink="/accounts/login">Login</a></li>
+                              <li><a routerLink="/jobseeker/dashboard">Dashboard</a></li>
+                             <li><a routerLink="/jobseeker/findjobs">Find a Job</a></li>
+                             <li><a routerLink="/jobseeker/dashboard">Messages</a></li>
+                             <li><a  routerLink="/jobseeker/profile">Profile</a></li>
+                             <li><a  routerLink="/jobseeker/checklist">Checklist</a></li>
+                             <li><a  routerLink="/jobseeker/ongoingjobs">Ongoing jobs</a></li>
+                             <li><a routerLink="/jobseeker/profile">Contact Info</a></li>
+     <li><a routerLink="/jobseeker/profile/workhistory">Work History</a></li>
+     <li><a routerLink="/jobseeker/profile/emergencyinfo">Emergency Info</a></li>
+     <li><a routerLink="/jobseeker/profile/educationhistory">Education History</a></li>
+     <li><a routerLink="/jobseeker/profile/documents">Documents</a></li>
+     <li><a routerLink="/jobseeker/profile/certifications">Certifications</a></li>
+     <li><a routerLink="/jobseeker/categories">Browse Categories</a></li>
+                          </ul>
+                       </li>
+                       <li class="has-children">
+                          <a href="#">for employers</a>
+                          <ul>
+                              <li><a routerLink="/accounts/employer/signup">Sign Up</a></li>
+                              <li><a routerLink="/accounts/login">Login</a></li>
+                              <li><a routerLink="/employer/dashboard">Dashboard</a></li>
+                              <li><a routerLink="/employer/job">single Job</a></li>
+                              <li><a routerLink="/employer/profile"><i class="fa fa-users"></i>My Profile</a></li>
+       <li><a routerLink="/employer/messages"><i class="fa fa-envelope-open"></i>messages</a></li>
+       <li><a routerLink="/employer/postjobs"><i class="fa fa-plus-circle"></i>Post a Job</a></li>
+       <li><a routerLink="/employer/checklist"><i class="fa fa-check"></i>Checklist</a></li>
+       <li><a routerLink="/employer/contracts"><i class="fa fa-tasks"></i>Contracted Jobs</a></li>
+       <li><a routerLink="/employer/jobapplications"><i class="fa fa-paper-plane"></i>Job Applications</a></li>
+       <li><a routerLink="/employer/findcandidates"><i class="fa fa-search"></i>Find Candidates</a></li>
+       <li><a routerLink="/employer/payments"><i class="fa fa-search"></i>Payments</a></li>
+                          </ul>
+                       </li>
+                       <li class="has-children">
+                            <a href="#">  For Admin</a>
+                            <ul>
+                               
+                                <li><a routerLink="/accounts/login"> Login</a></li>
+                                <li><a routerLink="/admin/dashboard">Dashboard</a></li>
+                                
+                                 <li><a routerLink="/admin/profile"><i class="fa fa-users"></i>My Profile</a></li>
+                                 <li><a routerLink="/admin/jobseekers/approve"><i class="fa fa-check"></i>Approve Job Seekers</a></li>
+                                 <li><a routerLink="/admin/employers/approve"><i class="fa fa-check"></i>Approve Employers</a></li>
+                                 <li><a routerLink="/admin/payments"><i class="fa fa-check"></i>Payments</a></li>
+                                 <li><a routerLink="/admin/jobseekers/"><i class="fa fa-tasks"></i>Job Seekers</a></li>
+                                 <li><a routerLink="/admin/employers/"><i class="fa fa-paper-plane"></i>Employers</a></li>
+                                 <li><a routerLink="/admin/messages"><i class="fa fa-search"></i>Messages</a></li>
+                                 <li><a routerLink="/admin/posts"><i class="fa fa-search"></i>Job Posts</a></li>
+                                 <li><a routerLink="/user/changepassword"><i class="fa fa-lock"></i>change password</a></li>
+                                 <li><a href="/user/logout"><i class="fa fa-power-off"></i>LogOut</a></li>
+                            </ul></li>
+                       <li class="has-children">
+                          <a href="#">pages</a>
+                          <ul>
+                             <li><a href="about.html">About us</a></li>
+                             <li class="has-inner-child">
+                                <a href="#">blog</a>
+                                <ul>
+                                   <li><a href="blog.html">blog</a></li>
+                                   <li><a href="single-blog.html">single blog</a></li>
+                                </ul>
+                             </li>
+                             <li><a href="job-page.html">job page</a></li>
+                             <li><a href="login.html">login</a></li>
+                             <li><a href="register.html">register</a></li>
+                             <li><a href="contact.html">contact us</a></li>
+                          </ul>
+                       </li>
+                    </ul>
+                 </nav>
+              </div>
+           </div>
+           <div class="col-lg-4">
+              <div class="header-right-menu">
+                 <ul>
+                   
+                    
+                   
+                   
+                     <li class="dropdown" *ngIf="auth.user | async as user else nouser">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                            <strong>{{user.displayName}}</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                                
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                           <img [src]="user.photoURL" class="img-responsive img-fluid img-thumbnail">
+                                           <br>
+                                          <br>
+                                        </div>
+                                        <div class="col-lg-12">
+                                                <a class="post-jobs" routerLink="">Update Profile Photo</a>
+                                                <br>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="list-group">
+                                                    <a class="list-group-item"><p class="pull-left">{{user.displayName}}</p></a>
+                                                    <a class="list-group-item"><p class="pull-left">{{user.email}}</p></a>
+        
+                                                    <a routerLink="/jobseeker/profile" *ngIf="user.role=='JS'" class="list-group-item"><p class="pull-left">Profile Settings</p><span class="fa fa-gear pull-right"></span></a>
+                                                    <a routerLink="/employer/profile" *ngIf="user.role=='EM'" class="list-group-item"><p class="pull-left">Profile Settings</p><span class="fa fa-gear pull-right"></span></a>
+                                                    <a (click)="signOut()" class="list-group-item"><p class="pull-left">Log out</p><span class="fa fa-power-off pull-right"></span></a>
+                                            </div>
+                                            
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li></li>
+                           
+                        </ul> 
+                    </li>
+                    
+                    <li *ngIf="auth.user | async as user else nouser" ><a *ngIf="user.role=='EM'" routerLink="/employer/postjobs" class="post-jobs">Post jobs</a></li>
+                    <li  *ngIf="auth.user | async as user else nouser" ><a  *ngIf="user.role=='JS'" routerLink="/jobseeker/findjobs"  class="post-jobs">Find a Job</a></li>
+                    <li  *ngIf="!auth.user" ><a *ngIf="!user.role"routerLink="/employer/postjobs" class="post-jobs">Post jobs</a></li>
+                    <li  *ngIf="!auth.user"><a routerLink="/employer/postjobs" class="post-jobs">Post jobs</a></li>
+                    
+                 </ul>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</header>
+<!-- Header Area End -->
+

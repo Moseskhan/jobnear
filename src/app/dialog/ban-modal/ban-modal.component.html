@@ -1,0 +1,10 @@
+
+<h3 mat-dialog-title >Are you sure you want to ban {{data.name}}</h3>
+<div mat-dialog-content>
+  <p>By banning this users account, they will be alerted and they wont be able to login again</p>
+  
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-danger" (click)="onNoClick()">No Thanks</button>&nbsp;&nbsp;
+  <button class="btn btn-primary pull-right" [mat-dialog-close]="data.animal" cdkFocusInitial>Yes</button>
+</div>

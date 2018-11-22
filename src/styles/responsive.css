@@ -1,0 +1,298 @@
+@media (max-width: 1200px) {
+.navbar-inverse .navbar-nav>li>a{padding: 20px 15px;}
+.navbar-inverse .navbar-nav>li.dropdown {margin-left: 10px;}
+.navbar-inverse .navbar-nav>li.dropdown>a{padding-top: 12px;}
+
+.icon-Box {height: auto;}
+.icon-Box h3 {font-size: 16px; margin-bottom: 15px; font-weight: 500;}
+.icon-Box h2 {font-size: 28px;}
+.icon-Box h2 span {font-size: 18px;}
+
+.title2,
+.Annet-morning h4,
+.Recernt-Appli h4,
+.User-Details h4{font-size: 24px;}
+.timer h3 {font-size: 24px;}
+h3.weekDate {font-size: 20px;}
+span.date {font-size: 18px;}
+.userProfileName {font-size: 20px;}
+.userProfileEmail {font-size: 17px;}
+.morning-inner h3 {font-size: 24px;}
+
+.table-2 thead th, 
+.table-2 tbody td {font-size: 14px;}
+
+
+.titleImg {font-size: 24px; padding-left: 50px; background-size: 40px; line-height: 40px;}
+
+.title1,
+.User-Details h1 {font-size: 32px}
+.Contact-Box h5 {font-size: 22px;}
+.subListText li {font-size: 20px;}
+label {font-size: 18px;}
+.Contact-Box.Edit-inner {padding-left: 40px;}
+
+.cardSection .title2 span a {width: 20px;}
+
+.inputField {font-size: 18px;}
+
+.createFieldsBox .inputField {padding-left: 10px;}
+.cardBox .dateBox {font-size: 20px; padding: 60px 5px 20px;}
+.cardBox .cardInfoBox{min-height: 180px;}
+
+
+.col-md-6.Edit-inner {padding-left: 40px;}
+.Contact-Box.Change-inner{padding-right: 0px;}
+
+
+.border-right:before {right: -10px;}
+
+.title3 {font-size: 22px;}
+.ulListinDot li {font-size: 20px; line-height: 30px;}
+
+.countword {font-size: 46px;}
+
+.viewPayHistory h5 {line-height: normal;}
+.viewPayHistory h5 .open-btn {float: none; display: inline-block;}
+
+.User-Details .btn-box {padding: 10px; font-size: 16px;}
+
+.Contact-Box h6 {font-size: 20px;}
+
+footer .footerMenu li {padding: 20px 5px;}
+footer .footerMenu li a {font-size: 14px; font-weight: 500;}
+.footerSocialLinks a {width: 25px; height: 25px;}
+
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 991px) {
+.navbar-brand {width: 150px;}
+.navbar-inverse .navbar-nav>li>a {padding: 5px 10px; font-weight: 600;}
+.navbar-inverse .navbar-nav>li.dropdown>a {padding-top: 0px;}
+
+.icon-Box {min-height: 125px;}
+.icon-Box h2 span {display: block;}
+
+.Annet-morning {display: inline-block;  width: 100%;}
+.morning-inner .user-profile {width: 100px; height: 100px; margin: 30px 0px 10px;}
+.Recernt-Appli {margin-top: 50px;}
+.allUsersBoxSection .rowInfoBox{padding: 0px;}
+
+
+.Contact-Box.Edit-inner {padding-left: 0px;}
+.User-Details h4{text-align: left;}
+
+.cardBox .cardInfoBox {min-height: 195px;}
+.cardBox .cardInfoBox .applied span {font-size: 24px;}
+
+
+.col-md-6.Edit-inner {padding-left: 15px;}
+
+
+.border-right:before {display: none;}
+
+
+.table-3 tbody tr td {font-size: 14px;}
+.table-3 tbody tr:nth-child(even) td:first-child:before,
+.table-3 tbody tr:nth-child(odd) td:first-child:before {width: 40px; height: 40px; left: 5px;}
+.table-3>tbody>tr>td, .table-3>tbody>tr>th, .table-3>tfoot>tr>td, .table-3>tfoot>tr>th, .table-3>thead>tr>td, .table-3>thead>tr>th {padding: 20px 10px;}
+.pagination>li>a {font-size: 16px;}
+
+.countword {font-size: 32px;}
+h5 .open-btn {float: none; display: block; margin-top: 20px;}
+
+.appliedLeftBox .appliedInfo {margin-bottom: 30px;}
+.appliedLeftBox .appliedInfo .dayDateText {font-size: 18px;}
+.appliedLeftBox .appliedInfo .timeinfo {font-size: 16px;}
+.appliedLeftBox .appliedInfo .placeinfo {font-size: 16px;}
+.appliedLeftBox .appliedInfo .approval,
+.appliedLeftBox .appliedInfo .pendingApproval {font-size: 15px;}
+
+
+.userDetailsBtnGroup .col-xs-6{width: 100%;}
+
+
+
+
+
+footer .logo{width: 150px;display: block; }
+footer .footerMenu li a {font-size: 13px;}
+.footerSocialLinks{margin-left: 5px;}
+.footerSocialLinks a {width: 20px; height: 20px;}
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 767px) {
+.navbar-brand {margin-left: 15px;}
+.navbar-inverse .navbar-toggle {border-color: #0170ba; background: #0170ba;}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{background: #11af00; border-color: #11af00;}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {border-color: #e1e1e1; margin-top: 15px;}
+.navbar-inverse .navbar-nav>li>a {padding: 10px 15px;}
+
+.navbar-inverse .navbar-nav>li.dropdown>a {padding-left: 0px;}
+.navbar-inverse .navbar-nav>li.dropdown{margin: 0px;padding: 0px 15px;}
+.navbar-nav>li>.dropdown-menu.right-drop {background: #0170ba;}
+.navbar-nav>li>.dropdown-menu.right-drop li:first-child:before{left: 30px;}
+
+.Top-header {padding: 10px 0px 0px;}
+
+
+.icon-Box {min-height: auto; margin-bottom: 25px;}
+.icon-Box h2 span {display: inline-block;}
+
+
+.totalCount {font-size: 50px; margin: 20px 0px;}
+.titleImg{margin-bottom: 20px; font-size: 19px; padding-left: 40px; background-size: 30px; line-height: 30px;}
+.subTitleInfo {font-size: 20px;}
+.rowInfoBox .col-sm-6:first-child .infoBox:after{}
+
+
+.middle-Wrapper {padding: 30px 15px; border-radius: 30px; margin: 30px 0px 60px;}
+
+.User-Details h1 {font-size: 28px;}
+
+.createFieldsBox {margin-bottom: 70px;}
+.createFieldsBox .form-group{width: 50%; float: left; padding: 0px 10px;}
+
+.searchSection {margin-bottom: 30px;}
+
+
+
+.bookModalBox .modal-title {font-size: 18px; margin-bottom: 30px;}
+.editModalBox .modalSubTitle {font-size: 18px;}
+.editModalBox .modalPlace {font-size: 20px;}
+
+.searchOptions .inputField {padding-left: 10px;}
+
+
+.pagination>li>a {font-size: 14px; padding: 5px 10px;}
+
+.User-Details .col-sm-6:first-child:before{display: none;}
+
+h5 .open-btn {float: right; margin-top: 0px;}
+.viewPayHistory h5 {line-height: 50px;}
+.viewPayHistory h5 .open-btn {float: right;}
+.viewPayHistory {padding: 30px 15px;}
+
+.inputField2 {font-size: 18px;}
+
+.appliedLeftBox{margin-bottom: 50px;}
+.appliedLeftBox .appliedInfo{width: 33.33%; float: left;}
+.listingBox:before{display: none;}
+
+.userDetailsBtnGroup{margin-top: 30px;}
+.userDetailsBtnGroup .Contact-Sec{margin-top: 0px;}
+.userDetailsBtnGroup .col-xs-6{width: 50%;}
+
+.userLinstModel .userInfo span {font-size: 17px;}
+.userLinstModel .userInfo .applied {font-size: 16px;}
+.userLinstModel .bookBtnBox .greenBtn {font-size: 14px; padding: 10px 25px;}
+
+
+footer .logo {margin: 0 auto;}
+footer .footerMenu {text-align: center;}
+.footerSocialLinks {display: inline-block; float: none; padding-top: 0; vertical-align: middle;}
+footer .copyrightBox {text-align: center;}
+
+
+
+}
+
+@media (max-width: 640px) {
+.rowInfoBox .col-sm-6:first-child .infoBox:after{display: none;}
+
+.searchOptions .emptyBox{display: none;}
+.searchOptions .row {margin-bottom: 0px;}
+.searchOptions .row .col-1,
+.searchOptions .row .col-2,
+.searchOptions .row .col-3,
+.searchOptions .row .col-4{width: 50%; margin-bottom: 15px;}
+
+
+.searchOptions2 .row .col-1,
+.searchOptions2 .row .col-2,
+.searchOptions2 .row .col-3,
+.searchOptions2 .row .col-4{width: 33.33%; margin-bottom: 15px;}
+
+
+
+}
+@media (max-width: 600px) {
+
+.allUsersBoxSection .col-xs-6 {width: 100%;}
+.calenderCardSection .listingBox .col-xs-6{width: 100%;}
+.cardBox .cardInfoBox {min-height: auto;}
+
+.passRecovery {position: relative; font-size: 18px; margin-bottom: 15px;}
+
+.img-cont {width: auto;}
+
+.searchOptions2 .row .col-1,
+.searchOptions2 .row .col-2,
+.searchOptions2 .row .col-3,
+.searchOptions2 .row .col-4{width: 100%; margin-bottom: 15px;}
+
+.appliedLeftBox .appliedInfo{width: 100%; float: left;}
+.userLinstModel .userInfo {width: 80%;}
+
+.editModalBox .modalTime,
+.editModalBox .modalDate {font-size: 20px;}
+
+}
+@media (max-width: 480px) {
+.Application-Inner .col-xs-6{width: 100%; text-align: center;}
+.Application-Inner .col-xs-6 .icon-Box{text-align: center;}
+.icon-Box h2 span {display:block;}
+
+
+.Annet-morning h4, 
+.Recernt-Appli h4,
+.User-Details h4{font-size: 20px;}
+
+.Annet-morning .gryBoxBG .col-xs-7,
+.Annet-morning .gryBoxBG .col-xs-5{width: 100%;text-align: center;}
+.Annet-morning .morning-inner .user-profile{margin: 30px auto 10px;}
+
+.User-Details h1 {font-size: 24px;}
+
+footer .footerMenu li {padding: 10px 5px;}
+.footerSocialLinks{padding: 10px 0px; margin: 0px;}
+
+.pagination .morePages span {font-size: 22px; padding: 0px 5px; width: auto;}
+.pagination>li>a {font-size: 14px; padding: 5px 7px;}	
+
+h5 .open-btn {float: none; display: block; margin-top: 20px;}
+.viewPayHistory h5 .open-btn {float: none;}
+
+.title3 {font-size: 18px;}
+.ulListinDot li {font-size: 18px; padding-left: 15px;}
+.ulListinDot li:before {left: 0px;}
+
+.userDetailsBtnGroup .col-xs-6{width: 100%; text-align: center;}
+
+.userLinstModel .userInfo {width: 100%; padding-left: 0px; padding-top: 20px;}
+
+
+}
+@media (max-width: 360px) {
+.searchOptions .row .col-1,
+.searchOptions .row .col-2,
+.searchOptions .row .col-3,
+.searchOptions .row .col-4{width: 100%;}
+.createFieldsBox .form-group {width: 100%; padding: 0px;}
+
+.img-cont {width: 100%; margin-top: 15px;}
+
+.title1, .User-Details h1 {font-size: 24px;}
+
+
+
+}

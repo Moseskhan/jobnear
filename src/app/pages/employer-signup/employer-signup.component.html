@@ -1,0 +1,106 @@
+
+<app-header></app-header>
+ <!-- Breadcromb Area Start -->
+ <section class="jobguru-breadcromb-area">
+    <div class="breadcromb-top section_100">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="breadcromb-box">
+                   <h3>Employer Registeration</h3>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="breadcromb-bottom">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="breadcromb-box-pagin">
+                   <ul>
+                      <li><a href="#">home</a></li>
+                      <li><a href="#">Employer</a></li>
+                      <li class="active-breadcromb"><a routerLink="/account/employer/signup">Register</a></li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Breadcromb Area End -->
+  
+  
+ <!-- Login Area Start -->
+ <section class="jobguru-login-area section_70">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="login-box">
+                <div class="login-title">
+                   <h3>Employer registration</h3>
+                </div>
+                <form>
+                   <div class="single-login-field">
+                      <input type="text" placeholder="Full Name of Representative">
+                   </div>
+                   <div class="single-login-field">
+                    <input type="text" placeholder="Company Name/Employer Name">
+                 </div>
+                 <div class="single-login-field">
+                    <input type="text" placeholder="Industry">
+                 </div>
+                   <div class="single-login-field">
+                      <input type="email" placeholder="Email Addresss">
+                   </div>
+                   <div class="single-input single-login-field">
+                       <select>
+                    <option>One time-shift</option>
+                    <option>Recurring Shifts</option>
+                    <option>Full-time Empployee</option>
+                    <option>Part time shift</option>
+                  </select></div>
+                   <div class="single-login-field">
+                      <input type="password" placeholder="Choose Password">
+                   </div>
+                   <div class="single-login-field">
+                      <input type="password" placeholder="Confirm Password">
+                   </div>
+                   <div class="remember-row single-login-field clearfix">
+                      <p class="checkbox remember">
+                         <input class="checkbox-spin" type="checkbox" id="Freelance">
+                         <label for="Freelance"><span></span>accept terms & condition</label>
+                      </p>
+                   </div>
+                   <div class="single-login-field">
+                      <button type="submit">Sign Up</button>
+                   </div>
+                </form>
+                <div class="notification success"  id="signUpSuccess">
+                        <span>Your Account was created successfuly.
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="notification danger" style="display:none;background-color: red" id="signUpError">
+                        <span>Please fill all the fields to continue
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                <div class="dont_have">
+                   <a routerLink="/accounts/login">Already have an account?</a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Login Area End -->
+
+
+<app-footer></app-footer>

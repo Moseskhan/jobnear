@@ -1,0 +1,94 @@
+<app-header>
+
+</app-header>
+
+
+
+    <!-- Breadcromb Area Start -->
+    <section class="jobguru-breadcromb-area">
+        <div class="breadcromb-top section_100">
+           <div class="container">
+              <div class="row">
+                 <div class="col-md-12">
+                    <div class="breadcromb-box">
+                       <h3>Login</h3>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="breadcromb-bottom">
+           <div class="container">
+              <div class="row">
+                 <div class="col-md-12">
+                    <div class="breadcromb-box-pagin">
+                       <ul>
+                          <li><a href="#">home</a></li>
+                          <li><a href="#">User</a></li>
+                          <li class="active-breadcromb"><a href="#">Login</a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Breadcromb Area End -->
+      
+      
+     <!-- Login Area Start -->
+     <section class="jobguru-login-area section_70">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="login-box">
+                    <div class="login-title">
+                       <h3>Sign in</h3>
+                    </div>
+                    <form  [formGroup]="formLogin" (ngSubmit)="signIn()">
+                       <div class="single-login-field">
+                          <input type="email" placeholder="Email Address" formControlName="username" >
+                       </div>
+                       <div class="single-login-field">
+                          <input type="password" placeholder="Password" formControlName="password">
+                       </div>
+                       <div class="remember-row single-login-field clearfix">
+                          <p class="checkbox remember">
+                             <input class="checkbox-spin" type="checkbox" id="Freelance">
+                             <label for="Freelance"><span></span>Keep Me Signed In</label>
+                          </p>
+                          <p class="lost-pass">
+                             <a routerLink="/accounts/forgotpassword">forgot password?</a>
+                          </p>
+                       </div>
+                       <div class="single-login-field">
+                          <button type="submit"  matTooltip="click here to login">Sign in</button>
+                       </div>
+                    </form>
+                    <div class="notification success"  id="signUpSuccess" *ngIf="success">
+                        <span>Your Account was created successfuly.
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="notification danger" *ngIf="error" id="signUpError">
+                        <span>Please fill all the fields to continue
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="dont_have">
+                       <a routerLink="/accounts/options" >Don't have an account?</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Login Area End -->
+  <app-footer>
+  
+</app-footer>

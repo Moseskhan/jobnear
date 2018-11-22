@@ -1,0 +1,126 @@
+<app-header></app-header>
+<section class="jobguru-breadcromb-area">
+    <div class="breadcromb-top section_100">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="breadcromb-box">
+                   <h3>Job Seeker Registeration</h3>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="breadcromb-bottom">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="breadcromb-box-pagin">
+                   <ul>
+                      <li><a href="#">home</a></li>
+                      <li><a href="#">Employer</a></li>
+                      <li class="active-breadcromb"><a routerLink="/account/employee/signup">Register</a></li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Breadcromb Area End -->
+  
+  
+ <!-- Login Area Start -->
+ <section class="jobguru-login-area section_70">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="login-box">
+                <div class="login-title">
+                   <h3>Job Seeker Registration</h3>
+                </div>
+                <form [formGroup]="employeeSignUpForm" (ngSubmit)="signUp()">
+                   <div class="single-login-field">
+                       <label>First Name</label>
+                      <input type="text" placeholder="First Name" formControlName="firstName">
+                      <p class="text-danger" *ngIf="firstName?.touched && firstName.invalid"> First Name is required</p>
+                   </div>
+                   <div class="single-login-field">
+                        <label>Last Name</label>
+                    <input type="text" placeholder="Last Name" formControlName="lastName">
+                    <p class="text-danger" *ngIf="lastName?.touched && lastName.invalid"> Last Name is required</p>
+                 </div>
+                 <div class="single-login-field">
+                        <label>Phone Number</label>
+                    <input type="text" placeholder="Phone Number" formControlName="phoneNumber">
+                    <p class="text-danger" *ngIf="phoneNumber?.touched && phoneNumber.invalid"> Phone Number is required</p>
+                 </div>
+                   <div class="single-login-field">
+                        <label>Email Address</label>
+                      <input type="email" placeholder="Email Addresss" formControlName="email">
+                      <p class="text-danger" *ngIf="email?.touched && email.invalid"> Invalid email address</p>
+                   </div>
+                  
+                   <div class="single-input single-login-field">
+                        <label>Select Industry</label>
+                       <select formControlName="industry">
+
+                   
+                   <option *ngFor="let industry of (industryCategories | async)" [value]="industry.id">{{industry?.data.name}}</option>
+                  </select>
+                  <p class="text-danger" *ngIf="industry?.touched && industry.invalid"> Select industry your career is based on</p>
+                </div>
+                   <div class="single-login-field">
+                      <input type="password" placeholder="Choose Password" formControlName="password" [(ngModel)]="password2">
+                      <password-strength-bar [passwordToCheck]="password2" [barLabel]="barLabel"></password-strength-bar>
+                   </div>
+                   <div class="single-login-field">
+                      <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+                      <p class="text-danger" *ngIf="password?.value!=confirmPassword?.value"> Password must match</p>
+                   </div>
+                   <div class="remember-row single-login-field clearfix">
+                      <p class="checkbox remember">
+                         <input class="checkbox-spin" type="checkbox" id="Freelance" formControlName="terms" value="terms">
+                         <label for="Freelance"><span></span>accept terms & condition</label>
+
+                      </p>
+                      
+                   </div>
+                   <div class="single-login-field">
+                        <p class="text-danger" *ngIf="terms.invalid"> You must agree to terms and condition before continuing</p>
+                      <button type="submit"  matTooltip="Info about the action">Sign Up</button>
+                   </div>
+                </form>
+                <div *ngIf="success">
+                <div class="notification success"  id="signUpSuccess" >
+                        <span>Account was created successfully,
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <br>
+                 <a class="btn btn-primary" style="color:white" routerLink="/accounts/login">Login into your Account</a>   
+                </div>
+                    <div *ngIf="employeeSignUpForm.errors">
+                    <div class="notification danger"  id="signUpError">
+                        <span>Please fill all the fields to continue, passwords must match
+                        </span>
+                        <button class="close-ntf" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                   
+                </div>
+                <div class="dont_have">
+                   <a routerLink="/accounts/login">Already have an account?</a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- Login Area End -->
+
+
+<app-footer></app-footer>

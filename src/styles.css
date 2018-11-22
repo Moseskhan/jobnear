@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './theme/css/bootstrap.css';
+@import './theme/css/font-awesome.min.css';
+@import './theme/css/magnific-popup.css';
+@import './theme/css/owl.carousel.min.css';
+@import './theme/css/owl.theme.default.min.css';
+@import './theme/css/animate.min.css';
+@import './theme/css/select2.min.css';
+@import './theme/css/slicknav.min.css';
+@import './theme/css/bootstrap-datepicker.min.css';
+@import './theme/css/jquery-ui.min.css';
+@import './theme/css/perfect-scrollbar.min.css';
+@import './theme/css/style.css';
+@import './theme/css/responsive.css';
+@import './theme/css/style2.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+
+
+
+
