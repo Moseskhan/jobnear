@@ -92,11 +92,11 @@
                             <div class="single-resume-feild feild-flex-2">
                                <div class="single-input">
                                   <label for="Phone">Phone:</label>
-                                  <input type="text"[attr.value]="(userInfo | async)?.phoneNumber ? (userInfo | async)?.phoneNumber : null" #phone>
+                                  <input type="text"  [value]="(userInfo | async)?.phoneNumber" #phone>
                                </div>
                                <div class="single-input">
                                   <label for="Email">Secondary Phone:</label>
-                                  <input type="text" [attr.value]="(userInfo | async)?.secondaryPhoneNumber ? (userInfo | async)?.secondaryPhoneNumber : null" #secondaryPhoneNumber>
+                                  <input type="text" [value]="(userInfo | async)?.secondaryPhoneNumber " #secondaryPhoneNumber>
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
@@ -109,21 +109,21 @@
                                </div>
                                <div class="single-input">
                                   <label for="City">City:</label>
-                                  <input type="text" [attr.value]="(userInfo | async)?.city ? (userInfo | async)?.city : null" #city>
+                                  <input type="text" [value]="(userInfo | async)?.city" #city>
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
                                <div class="single-input">
                                   <label for="Zip">Zip:</label>
-                                  <input type="text" #zip [attr.value]="(userInfo | async)?.zip ? (userInfo | async)?.zip : null">
+                                  <input type="text" #zip [value]="(userInfo | async)?.zip ">
                                </div>
                                <div class="single-input">
                                   <label for="Address22">Address:</label>
-                                  <input type="text" [attr.value]="(userInfo | async)?.address ? (userInfo | async)?.address : null"  #address>
+                                  <input type="text" [value]="(userInfo | async)?.address"  #address>
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
-                              <button class="btn jobguru-btn-2" (click)="saveContactInfo(phone,secondaryPhoneNumber,state,zip,address)">Save Contact Info</button>  
+                              <button class="btn jobguru-btn-2" (click)="saveContactInfo(phone,secondaryPhoneNumber,state,zip,address,city)">Save Contact Info</button>  
                             </div>
                          </div>
                          <div class="resume-box">
@@ -134,14 +134,14 @@
                                   <i class="fa fa-twitter twitter"></i>
                                   twitter
                                   </label>
-                                  <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter">
+                                  <input type="text" [value]="(userInfo | async)?.twitter" #twitter >
                                </div>
                                <div class="single-input">
                                   <label for="twitter">
                                   <i class="fa fa-facebook facebook"></i>
                                   facebook
                                   </label>
-                                  <input type="text" value="https://www.twitter.com/" id="facebook" name="facebook">
+                                  <input type="text" [value]="(userInfo | async)?.facebook" #facebook >
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
@@ -150,19 +150,19 @@
                                   <i class="fa fa-google-plus google"></i>
                                   Google
                                   </label>
-                                  <input type="text" value="https://www.google.com/" id="google" name="twitter">
+                                  <input type="text" [value]="(userInfo | async)?.google" #google >
                                </div>
                                <div class="single-input">
                                   <label for="linkedin">
                                   <i class="fa fa-linkedin linkedin"></i>
                                   linkedin
                                   </label>
-                                  <input type="text" value="https://www.linkedin.com/" id="linkedin" name="twitter">
+                                  <input type="text" [value]="(userInfo | async)?.linkedIn" #linkedIn>
                                </div>
                             </div>
                          </div>
                          <div class="submit-resume">
-                            <button type="submit">Update Social Links</button>
+                            <button type="submit" (click)="updateSocialInfo(facebook, twitter, linkedIn, google)">Update Social Links</button>
                          </div>
                       </form>
                    </div>

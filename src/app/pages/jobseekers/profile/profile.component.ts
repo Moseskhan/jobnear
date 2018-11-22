@@ -9,6 +9,13 @@ export interface contactInfo{
   zip: string;
   address: string;
 }
+export interface socialLinks{
+  facebook: string;
+  twitter: string;
+  linkedIn: string;
+  google: string
+
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -53,6 +60,28 @@ contactInfo=new FormGroup({
    this.profile.addSkill(this.myskills);
    //console.log(this.myskills);
     
+  }
+  saveContactInfo(phone, secondaryPhoneNumber,state,zip,address, city){
+    let userContacts: contactInfo={
+        phoneNumber: phone.value,
+        secondaryPhoneNumber: secondaryPhoneNumber.value,
+        state: state.value,
+        zip: zip.value,
+        address: address.value,
+        city: city.value
+    };
+    this.profile.saveContactInfo(userContacts)
+    
+  }
+  updateSocialInfo(fb,twit,linkedIn,google){
+    let socialLinks: socialLinks={
+      facebook: fb.value,
+      twitter: twit.value,
+      linkedIn: linkedIn.value,
+      google: google.value,
+
+    }
+    this.profile.saveContactInfo(socialLinks);
   }
   
 

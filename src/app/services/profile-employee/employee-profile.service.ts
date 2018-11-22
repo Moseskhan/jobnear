@@ -20,7 +20,7 @@ uid:any;
     return this.firestore.collection("jobSeekers").doc(this.uid).update({
       title: title
     }) .then(() => {
-      this.snackbar.open("proffessional title was updated successfully",'Ok',{duration: 7000,verticalPosition: 'top',horizontalPosition: 'start'});
+      this.snackbar.open("proffessional title was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'});
     })
     .catch((error) => {
   
@@ -35,7 +35,7 @@ uid:any;
     return this.firestore.collection("jobSeekers").doc(this.uid).update({
       summary: summary
     }) .then(() => {
-      this.snackbar.open("Proffessional summary was updated successfully",'Ok',{duration: 7000,verticalPosition: 'top',horizontalPosition: 'start'})
+      this.snackbar.open("Proffessional summary was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'});
     })
     .catch((error) => {
   
@@ -44,13 +44,14 @@ uid:any;
           summary: summary,
           uid: this.uid
         });
+        this.snackbar.open("Proffessional summary was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
     });;
   }
   addSkill(skills){
     return this.firestore.collection("jobSeekers").doc(this.uid).update({
       skills: skills
     }) .then(() => {
-      this.snackbar.open("Proffessional summary was updated successfully",'Ok',{duration: 7000,verticalPosition: 'top',horizontalPosition: 'start'})
+      this.snackbar.open("skills were updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
     })
     .catch((error) => {
   
@@ -59,8 +60,33 @@ uid:any;
           skills: skills,
           uid: this.uid
         });
+        this.snackbar.open("skills were updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+
     });;
   }
+  saveContactInfo(info){
+    return this.firestore.collection("jobSeekers").doc(this.uid).update(info).then(() => {
+      this.snackbar.open("Contact Info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+    })
+    .catch((error) => {
+  
+      this.firestore.doc('jobSeekers/${this.uid}')
+        .set(info);
+        this.snackbar.open("Contact info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+    });;
+  }
+  saveSocialInfo(info){
+    return this.firestore.collection("jobSeekers").doc(this.uid).update(info).then(() => {
+      this.snackbar.open("Social Info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+    })
+    .catch((error) => {
+  
+      this.firestore.doc('jobSeekers/${this.uid}')
+        .set(info);
+        this.snackbar.open("Social info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+    });;
+  }
+  
   states=[
     {
         "name": "Alabama",

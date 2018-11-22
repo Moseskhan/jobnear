@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeProfileService } from '../../../services/profile-employee/employee-profile.service';
 
 @Component({
   selector: 'app-js-right--sidebar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JsRightSidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profile: EmployeeProfileService) { }
 
   ngOnInit() {
   }
