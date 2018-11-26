@@ -20,61 +20,53 @@
             <div class="col-lg-7 col-md-12">
                <div class="dashboard-right">
                   <div class="candidate-profile">
+                    <app-profile-pic></app-profile-pic>
                      <div class="candidate-single-profile-info">
-                        <div class="single-resume-feild resume-avatar">
-                           <div class="resume-image">
-                              <img src="assets/img/author.jpg" alt="resume avatar">
-                              <div class="resume-avatar-hover">
-                                 <div class="resume-avatar-upload">
-                                    <p>
-                                       <i class="fa fa-pencil"></i>
-                                       Edit
-                                    </p>
-                                    <input type="file">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="candidate-single-profile-info">
-                        <form>
+                        <form [formGroup]="educationForm" (ngSubmit)="addEducation()">
                            <div class="resume-box">
                               <h3>Education History</h3>
                               <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                      <label for="Phone">School Name:</label>
-                                     <input type="text"placeholder="school">
+                                     <input type="text"formControlName="schoolName">
+                                     <p *ngIf="schoolName.touched && schoolName.invalid" class="text-danger">Name of the school is required</p>
                                   </div>
                                   <div class="single-input">
                                      <label for="Email">Degree/Diploma/Certificate:</label>
-                                     <input type="text" placeholder="e.g GED, ">
+                                     <input type="text" formControlName="degree"> 
+                                     <p *ngIf="degree.touched && degree.invalid" class="text-danger">Degree/Certificate is required</p>
                                   </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
-                                  <div class="single-input">
-                                     <label for="Phone">From :</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to3" class="datepicker">
-                                  </div>
-                                  <div class="single-input">
-                                     <label for="Email">To:</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to2" class="datepicker">
-                                  </div>
+                                <div class="single-input">
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="From" formControlName="startDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+                                  <p *ngIf="startDate.touched && startDate.invalid" class="text-danger">When did you start school?</p>
+                                </div>
+                                <div class="single-input">
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker2" placeholder="To" formControlName="endDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                  </mat-form-field>
+                                  <p *ngIf="endDate.touched && endDate.invalid" class="text-danger">when did you finish school?</p>
+                                </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
-                                  <div class="single-input">
-                                      <label for="Email">Degree/Diploma/Certificate(optional):</label>
-                                      <input type="text" placeholder="e.g GED, Nursing">
-                                   </div>
+                                  
                                    <div class="single-input">
                                       <label for="Email">Area of Study(optional):</label>
-                                      <input type="text" placeholder="e.g GED ">
+                                      <input type="text" formControlName="studyArea">
                                    </div>
                                </div>
                                
                               <div class="single-resume-feild ">
                                  <div class="single-input">
-                                    <label for="Bio">Description</label>
-                                    <textarea id="Bio"></textarea>
+                                    <label for="Bio">Description(optional)</label>
+                                    <textarea id="Bio" formControlName="description"></textarea>
                                  </div>
                                  <div class="single-input">
                                 <button class="btn jobguru-btn-2">Add Education History</button>  
@@ -82,7 +74,16 @@
                               </div>
                               
                            </div>
+                           <div *ngIf="educationForm.errors">
+                            <div class="notification danger"  id="signUpError">
+                                <span>Please fill all the fields to add education history
+                                </span>
+                                <button class="close-ntf" type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                            
+                        </div>
                            
                            
                         </form>
@@ -93,23 +94,23 @@
                  <!-- end job head -->
                  <div class="candidate-list-page">
                     <!-- End Single Candidate List -->
-                    <div class="single-candidate-list">
+                    <div class="single-candidate-list" *ngFor="let history of (educationHistory | async)?.educationHistory;let count=index">
                        <div class="main-comment">
                           <div class="candidate-image">
-                             <h3>1. </h3>
+                             <h3>{{count+1}} </h3>
                           </div>
                           <div class="candidate-text">
                              <div class="candidate-info">
                                 <div class="candidate-title">
-                                   <h3><a href="#">Sschool Name</a></h3>
+                                   <h3><a href="#">{{history.schoolName}}</a></h3>
                                    
                                 </div>
-                                <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
+                                <p><span class="fa fa-clock"></span> {{history.startDate.toDate() | date }} -  {{history.endDate.toDate() | date }} </p>
                              </div>
                              <div class="candidate-text-inner">
-                                <p>Description  Here</p>
-                                <p>Degree: NURSING</p>
-                                <p>Area of Study: Psychiatric Nursing</p>
+                                <p>{{history.description}}</p>
+                                <p>Degree: {{history.degree}}</p>
+                                <p>Area of Study: {{history.studyArea}}</p>
                              </div>
                              <div class="candidate-text-bottom">
                                 
@@ -118,8 +119,8 @@
                                   
                                 </div>
                                 <div class="candidate-action">
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   <button (click)="removeHistory(history)" class="btn jobguru-btn-2" ><span class="fa fa-trash"></span></button>
+                                 
                                 </div>
                              </div>
                           </div>
@@ -127,74 +128,7 @@
                     </div>
                     <!-- End Single Candidate List -->
                    
-                     <!-- End Single Candidate List -->
-                     <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>2. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Sschool Name</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Description  Here</p>
-                                 <p>Degree: NURSING</p>
-                                 <p>Area of Study: Psychiatric Nursing</p>
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                   
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Single Candidate List -->
-                      <!-- End Single Candidate List -->
-                    <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>3. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Sschool Name</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Description  Here</p>
-                                 <p>Degree: NURSING</p>
-                                 <p>Area of Study: Psychiatric Nursing</p>
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                    <p class="open-icon"><i class="fa fa-clock"></i>  </p>
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Single Candidate List -->
+                     
                  </div>
             </div>
             <div class="col-lg-3 col-md-12 dashboard-left-border">

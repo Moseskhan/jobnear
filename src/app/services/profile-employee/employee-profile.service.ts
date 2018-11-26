@@ -157,6 +157,20 @@ uid:any;
   getWorkHistory(){
     return this.firestore.collection("workHistory").doc(this.uid).valueChanges();
   }
+  getEducationHistory(){
+      return this.firestore.collection("educationHistory").doc(this.uid).valueChanges();
+  }
+  addEducationHistory(educationHistory){
+    return this.firestore.collection("educationHistory").doc(this.uid).update({educationHistory}).then(() => {
+        this.snackbar.open("Work Experience was updated successfuly",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      })
+      .catch((error) => {
+    
+        this.firestore.doc(`educationHistory/${this.uid}`)
+          .set({educationHistory});
+          this.snackbar.open("Work Experience was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      });;
+  }
   
   
   states=[

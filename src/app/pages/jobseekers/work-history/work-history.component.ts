@@ -84,6 +84,7 @@ addWorkHistory(){
   
     this.profile.addWorkHistory(this.workHistoryList);
     this.getWorkList();
+    this.workForm.reset();
   }
    
   
