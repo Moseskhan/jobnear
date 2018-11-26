@@ -1,3 +1,4 @@
+import { SignupService } from './../../../services/signup/signup.service';
 import { FormGroup } from '@angular/forms';
 import { EmployeeProfileService } from './../../../services/profile-employee/employee-profile.service';
 import { Component, OnInit } from '@angular/core';
@@ -25,10 +26,11 @@ export class ProfileComponent implements OnInit {
 userInfo:any;
 myskills=[];
 states:any;
+selectedFile:any;
 contactInfo=new FormGroup({
 
 })
-  constructor(private profile: EmployeeProfileService) { 
+  constructor(private profile: EmployeeProfileService, private auth: SignupService) { 
   this.states=this.profile.states;
 
   }
@@ -83,6 +85,7 @@ contactInfo=new FormGroup({
     }
     this.profile.saveContactInfo(socialLinks);
   }
+  
   
 
 }

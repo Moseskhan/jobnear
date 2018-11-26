@@ -20,77 +20,87 @@
             <div class="col-lg-7 col-md-12">
                <div class="dashboard-right">
                   <div class="candidate-profile">
+                    <app-profile-pic></app-profile-pic>
                      <div class="candidate-single-profile-info">
-                        <div class="single-resume-feild resume-avatar">
-                           <div class="resume-image">
-                              <img src="assets/img/author.jpg" alt="resume avatar">
-                              <div class="resume-avatar-hover">
-                                 <div class="resume-avatar-upload">
-                                    <p>
-                                       <i class="fa fa-pencil"></i>
-                                       Edit
-                                    </p>
-                                    <input type="file">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="candidate-single-profile-info">
-                        <form>
+                        <form [formGroup]="workForm" (ngSubmit)="addWorkHistory()">
                            <div class="resume-box">
                               <h3>Work Experience</h3>
                               <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                      <label for="Phone">Company Name:</label>
-                                     <input type="text" value="+88-123-4467-9" id="Phone">
+                                     <input type="text" formControlName="companyName"  >
+                                     <p *ngIf="companyName.touched && companyName.invalid" class="text-danger">Company Name is required</p>
                                   </div>
                                   <div class="single-input">
                                      <label for="Email">Job Title:</label>
-                                     <input type="text" value="90838155262" id="Email">
+                                     <input type="text" formControlName="jobTitle">
+                                     <p *ngIf="jobTitle.touched && jobTitle.invalid" class="text-danger">Job title is required</p>
                                   </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
-                                     <label for="Phone">From :</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to3" class="datepicker">
+                                    <mat-form-field>
+                                      <input matInput [matDatepicker]="picker" placeholder="From" formControlName="startDate">
+                                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                      <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <p *ngIf="startDate.touched && startDate.invalid" class="text-danger">worked From Date is required</p>
                                   </div>
                                   <div class="single-input">
-                                     <label for="Email">To:</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to2" class="datepicker">
+                                    <mat-form-field>
+                                      <input matInput [matDatepicker]="picker2" placeholder="To" formControlName="endDate">
+                                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                      <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                    <p *ngIf="endDate.touched && endDate.invalid" class="text-danger">worked To Date is required</p>
                                   </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                      <label for="Phone">City</label>
-                                     <input type="text" placeholder="city" >
+                                     <input type="text" formControlName="city" >
+                                     <p *ngIf="city.touched && city.invalid" class="text-danger">City is required</p>
                                   </div>
                                   <div class="single-input">
                                      <label for="Email">State</label>
-                                     <input type="text" placeholder="state" >
+                                     <input type="text" formControlName="state" >
+                                     <p *ngIf="state.touched && state.invalid" class="text-danger">State is required</p>
                                   </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                      <label for="Phone">Contact Name:</label>
-                                     <input type="text" placeholder="Name">
+                                     <input type="text" formControlName="contactName">
+                                     <p *ngIf="contactName.touched && contactName.invalid" class="text-danger">Contact Name is required</p>
                                   </div>
                                   <div class="single-input">
                                      <label for="Email">Contact Phone Number</label>
-                                     <input type="text" placeholder="Phone Number" >
+                                     <input type="text" formControlName="contactPhoneNumber" >
+                                     <p *ngIf="contactPhoneNumber.touched && contactPhoneNumber.invalid" class="text-danger">contactPhoneNumber is required</p>
                                   </div>
                                </div>
                               <div class="single-resume-feild ">
                                  <div class="single-input">
                                     <label for="Bio">Additional Information</label>
-                                    <textarea id="Bio"></textarea>
+                                    <textarea formControlName="addittionalInfo"></textarea>
                                  </div>
                                  <div class="single-input">
-                                <button class="btn jobguru-btn-2">Add Work Experience</button>  
+                                <button type="submit" class="btn jobguru-btn-2">Add Work Experience</button>  
+                               
                                 </div>
                               </div>
                               
                            </div>
+                           <div *ngIf="workForm.errors">
+                            <div class="notification danger"  id="signUpError">
+                                <span>Please fill all the fields to add Work Experience
+                                </span>
+                                <button class="close-ntf" type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                           
+                        </div>
                            
                            
                            
@@ -102,33 +112,33 @@
                  <!-- end job head -->
                  <div class="candidate-list-page">
                     <!-- End Single Candidate List -->
-                    <div class="single-candidate-list">
+                    <div class="single-candidate-list" *ngFor="let history of (workHistory | async)?.workHistory;let count=index">
                        <div class="main-comment">
                           <div class="candidate-image">
-                             <h3>1. </h3>
+                             <h3>{{count+1}}</h3>
                           </div>
                           <div class="candidate-text">
                              <div class="candidate-info">
                                 <div class="candidate-title">
-                                   <h3><a href="#">Job Title Here at Bluebird Dentals</a></h3>
+                                   <h3><a href="#">{{history.jobTitle}} at {{history.companyName}}</a></h3>
                                    
                                 </div>
-                                <p><span class="fa fa-map-marker"></span>Hillsborough, NJ</p>
+                                <p><span class="fa fa-map-marker"></span>{{history.city}} , {{history.state}}</p>
                              </div>
                              <div class="candidate-text-inner">
-                                <p>Aditional information Here</p>
-                                <p>Contact Name: Phillis Envoy</p>
-                                <p>Contact Phone: 093883038838</p>
+                                <p>{{history.addittionalInfo}}</p>
+                                <p>Contact Name: {{history.contactName}}</p>
+                                <p>Contact Phone:{{history.contactPhoneNumber}}</p>
                              </div>
                              <div class="candidate-text-bottom">
                                 
                                 <div class="candidate-text-box">
-                                   <p class="open-icon"><i class="fa fa-clock"></i> 10/11/2017 - 10/12/2018 </p>
+                                   <p class="open-icon"><i class="fa fa-clock"></i> {{history.startDate.toDate() | date}} - {{history.endDate.toDate() | date}} </p>
                                   
                                 </div>
                                 <div class="candidate-action">
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   <button class="btn jobguru-btn-2" (click)="removeHistory(history)"><span class="fa fa-trash"></span></button>
+                                   
                                 </div>
                              </div>
                           </div>
@@ -136,70 +146,7 @@
                     </div>
                     <!-- End Single Candidate List -->
                    
-                    <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>2. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Job Title Here at Bluebird Dentals</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-map-marker"></span>Hillsborough, NJ</p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Aditional information Here</p>
-                                 <p>Contact Name: Phillis Envoy</p>
-                                 <p>Contact Phone: 093883038838</p>
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                    <p class="open-icon"><i class="fa fa-clock"></i> 10/11/2017 - 10/12/2018 </p>
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>3. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Job Title Here at Bluebird Dentals</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-map-marker"></span>Hillsborough, NJ</p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Aditional information Here</p>
-                                 <p>Contact Name: Phillis Envoy</p>
-                                 <p>Contact Phone: 093883038838</p>
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                    <p class="open-icon"><i class="fa fa-clock"></i> 10/11/2017 - 10/12/2018 </p>
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                    
                    
                  </div>
             </div>

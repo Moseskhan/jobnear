@@ -1,3 +1,4 @@
+import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
 import { PasswordStrengthBar } from './models/passwordStrength';
 import { environment } from './../environments/environment.prod';
 import { messageDialog } from './models/dialogMessage';
@@ -71,6 +72,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ToastComponent } from './dialog/toast/toast.component';
 import { UserStateService } from './services/user-state.service';
 import { EmployeeProfileService } from './services/profile-employee/employee-profile.service';
+import { ProfilePicComponent } from './pages/jobseekers/profile-pic/profile-pic.component';
 
 @NgModule({
   declarations: [
@@ -163,8 +165,9 @@ import { EmployeeProfileService } from './services/profile-employee/employee-pro
   
     BanModalComponent,
     PasswordStrengthBar,
-    ToastComponent
-  
+    ToastComponent,
+    ProfilePicComponent,
+ 
   
   ],
   imports: [
@@ -176,8 +179,8 @@ import { EmployeeProfileService } from './services/profile-employee/employee-pro
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    AngularFireStorageModule
     
     
   ],

@@ -1,13 +1,15 @@
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
+import { AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeProfileService {
 uid:any;
-  constructor(private firestore: AngularFirestore, private snackbar: MatSnackBar) { 
+  constructor(private firestore: AngularFirestore, private snackbar: MatSnackBar, private storage: AngularFireStorage) { 
 
  this.uid=localStorage.getItem("uid");
   }
@@ -112,6 +114,50 @@ uid:any;
           this.snackbar.open("Langauage was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
       });;
   }
+  uploadProfileImage(image: File){
+    const ref = this.storage.ref('');
+    const file=image;
+    const name = (+new Date()) + '-' + file.name;
+    const metadata = {
+      contentType: file.type
+    };
+    const task = ref.child(name).put(file, metadata);
+    task
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then((url) => {
+
+        this.firestore.collection("users").doc(this.uid).update({
+            photoURL: url
+        }).then(() => {
+            this.snackbar.open("profile Photo was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+          })
+          .catch((error) => {
+        
+            this.firestore.doc('users/${this.uid}')
+              .set({
+                  photoURL: url
+              });
+              this.snackbar.open("Profile Photo was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+          });;
+       
+      })
+      .catch(console.error);
+  }
+  addWorkHistory(workHistory){
+    return this.firestore.collection("workHistory").doc(this.uid).update({workHistory}).then(() => {
+        this.snackbar.open("Work Experience was updated successfuly",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      })
+      .catch((error) => {
+    
+        this.firestore.doc(`workHistory/${this.uid}`)
+          .set({workHistory});
+          this.snackbar.open("Work Experience was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      });;
+  }
+  getWorkHistory(){
+    return this.firestore.collection("workHistory").doc(this.uid).valueChanges();
+  }
+  
   
   states=[
     {

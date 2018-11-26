@@ -4,6 +4,7 @@ import { SignupService } from '../../services/signup/signup.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { database } from 'firebase';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-applicant-dashboard',
@@ -15,7 +16,7 @@ export class ApplicantDashboardComponent implements OnInit {
   constructor(private state: UserStateService) {
     this.state.detState();
 
-   }
+  }
 
   ngOnInit() {
   
