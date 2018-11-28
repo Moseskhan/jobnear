@@ -171,6 +171,20 @@ uid:any;
           this.snackbar.open("Work Experience was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
       });;
   }
+  addEmergencyInfo(emergencyInfo){
+    return this.firestore.collection("emergencyInfo").doc(this.uid).update({emergencyInfo}).then(() => {
+        this.snackbar.open("Emergency Info was updated successfuly",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      })
+      .catch((error) => {
+    
+        this.firestore.doc(`emergencyInfo/${this.uid}`)
+          .set({emergencyInfo});
+          this.snackbar.open("Emergency Info was updated successfully",'Ok',{duration: 7000,verticalPosition: 'bottom',horizontalPosition: 'center'})
+      });;
+  }
+  getEmergencyInfo(){
+    return this.firestore.collection("emergencyInfo").doc(this.uid).valueChanges();
+  }
   
   
   states=[
