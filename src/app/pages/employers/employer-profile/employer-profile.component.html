@@ -20,50 +20,41 @@
           <div class="col-lg-9 col-md-12">
              <div class="dashboard-right">
                 <div class="candidate-profile">
-                   <div class="candidate-single-profile-info">
-                      <div class="single-resume-feild resume-avatar">
-                         <div class="resume-image">
-                            <img src="assets/img/author.jpg" alt="resume avatar">
-                            <div class="resume-avatar-hover">
-                               <div class="resume-avatar-upload">
-                                  <p>
-                                     <i class="fa fa-pencil"></i>
-                                     Edit
-                                  </p>
-                                  <input type="file">
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="candidate-single-profile-info">
-                      <form>
+                    <app-profile-pic></app-profile-pic>
+                   <div class="candidate-single-profile-info" >
+                      <form  [formGroup]="companyProfile" (ngSubmit)="updateProfile()">
                          <div class="resume-box">
                             <h3>Employer Profile</h3>
                             <div class="single-resume-feild feild-flex-2 ">
                               <div class="single-input">
                                  <label for="Bio">Employer Name</label>
-                                 <input id="Bio" value="my proffessional title">
+                                 <input   formControlName="employerName">
+                                 <p *ngIf="employerName.touched && employerName.invalid" class="text-danger"> Employer Name is required</p>
                               </div>
                               <div class="single-input">
                                 <label for="Bio">Company Name</label>
-                                <input id="Bio" value="my proffessional title">
+                                <input    formControlName="companyName">
+                                <p *ngIf="companyName.touched && companyName.invalid" class="text-danger"> Company Name is required</p>
                              </div>
-                              <div class="single-input">
-                                <br>
-                             <button class="btn jobguru-btn-2">Save Info</button>  
-                             </div>
+                              
                            </div>
                             
                             <div class="single-resume-feild ">
                                <div class="single-input">
                                   <label for="Bio">Company Overview:</label>
-                                  <textarea id="Bio">Maecenas is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</textarea>
+                                  <textarea formControlName="companyOverview"></textarea>
+                                  <p *ngIf="companyOverview.touched && companyOverview.invalid" class="text-danger"> Company Overview is required</p>
                                </div>
-                               <div class="single-input">
-                              <button class="btn jobguru-btn-2">Save Overview</button>  
-                              </div>
+                              
                             </div>
+                            <div class="single-resume-feild ">
+                                <div class="single-input">
+                                   <label for="Bio">Employer Identification Number/Social Security Number</label>
+                                   <input formControlName="EIN">
+                                   <p *ngIf="EIN.touched && EIN.invalid" class="text-danger"> EIN is required</p>
+                                </div>
+                               
+                             </div>
                             
                          </div>
                          <div class="resume-box">
@@ -71,85 +62,62 @@
                             <div class="single-resume-feild feild-flex-2">
                                <div class="single-input">
                                   <label for="Phone">Phone:</label>
-                                  <input type="text" value="+88-123-4467-9" id="Phone">
+                                  <input type="text"   formControlName="phone">
+                                  <p *ngIf="phone.touched && phone.invalid" class="text-danger"> Phone is required</p>
                                </div>
-                               <div class="single-input">
-                                  <label for="Email">Secondary Phone:</label>
-                                  <input type="text" value="90838155262" id="Email">
-                               </div>
+                              
                             </div>
                             <div class="single-resume-feild feild-flex-2">
                                <div class="single-input">
                                   <label for="contry">State:</label>
-                                  <select id="contry">
+                                  <select id="contry" formControlName="state"> 
+                                    
                                      <option>Arab Amirats</option>
                                      <option>America</option>
                                      <option>Netherlands</option>
                                      <option>Russia</option>
-                                     <option selected>Bangladesh</option>
+                                    
                                      <option>India</option>
                                      <option>Pakistan</option>
                                      <option>Brazil</option>
                                      <option>Africa</option>
                                   </select>
+                                  <p *ngIf="state.touched && state.invalid" class="text-danger"> Company state is required</p>
                                </div>
                                <div class="single-input">
                                   <label for="City">City:</label>
-                                  <input type="text" value="Dhaka" id="City">
+                                  <input type="text"    formControlName="city">
+                                  <p *ngIf="city.touched && city.invalid" class="text-danger"> Company city is required</p>
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
                                <div class="single-input">
                                   <label for="Zip">Zip:</label>
-                                  <input type="text" value="6100" id="Zip">
+                                  <input type="text"   formControlName="zipCode">
+                                  <p *ngIf="zipCode.touched && zipCode.invalid" class="text-danger"> Company zipcode is required</p>
                                </div>
                                <div class="single-input">
                                   <label for="Address22">Address:</label>
-                                  <input type="text" value="New york city,22/A Street,01" id="Address22">
+                                  <input type="text"   formControlName="address">
+                                  <p *ngIf="address.touched && address.invalid" class="text-danger"> Company address is required</p>
                                </div>
                             </div>
                             <div class="single-resume-feild feild-flex-2">
                               <button class="btn jobguru-btn-2">Save Contact Info</button>  
                             </div>
                          </div>
-                         <div class="resume-box">
-                            <h3>social link</h3>
-                            <div class="single-resume-feild feild-flex-2">
-                               <div class="single-input">
-                                  <label for="twitter">
-                                  <i class="fa fa-twitter twitter"></i>
-                                  twitter
-                                  </label>
-                                  <input type="text" value="https://www.twitter.com/" id="twitter" name="twitter">
-                               </div>
-                               <div class="single-input">
-                                  <label for="twitter">
-                                  <i class="fa fa-facebook facebook"></i>
-                                  facebook
-                                  </label>
-                                  <input type="text" value="https://www.twitter.com/" id="facebook" name="facebook">
-                               </div>
+                         <div *ngIf="companyProfile.errors">
+                            <div class="notification danger"  id="signUpError">
+                                <span>Please fill all the fields to continue
+                                </span>
+                                <button class="close-ntf" type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <div class="single-resume-feild feild-flex-2">
-                               <div class="single-input">
-                                  <label for="google">
-                                  <i class="fa fa-google-plus google"></i>
-                                  Google
-                                  </label>
-                                  <input type="text" value="https://www.google.com/" id="google" name="twitter">
-                               </div>
-                               <div class="single-input">
-                                  <label for="linkedin">
-                                  <i class="fa fa-linkedin linkedin"></i>
-                                  linkedin
-                                  </label>
-                                  <input type="text" value="https://www.linkedin.com/" id="linkedin" name="twitter">
-                               </div>
-                            </div>
-                         </div>
-                         <div class="submit-resume">
-                            <button type="submit">Update Social Links</button>
-                         </div>
+                           
+                        </div>
+                         
+                         
                       </form>
                    </div>
                 </div>

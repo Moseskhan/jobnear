@@ -1,3 +1,6 @@
+
+
+
 import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
 import { PasswordStrengthBar } from './models/passwordStrength';
 import { environment } from './../environments/environment.prod';
@@ -34,13 +37,13 @@ import { ProfileOverviewComponent } from './pages/jobseekers/profile-overview/pr
 import { MessagesComponent } from './pages/jobseekers/messages/messages.component';
 import { OngoingjobsComponent } from './pages/jobseekers/ongoingjobs/ongoingjobs.component';
 import { DocumentsComponent } from './pages/jobseekers/documents/documents.component';
-import { ChecklistComponent } from './pages/jobseekers/checklist/checklist.component';
+import { ChecklistComponent, verifyEmailDialog } from './pages/jobseekers/checklist/checklist.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { EmployerDashboardComponent } from './pages/employers/employer-dashboard/employer-dashboard.component';
 import { EmployerMainSidebarComponent } from './pages/employers/employer-main-sidebar/employer-main-sidebar.component';
 import { EmmployerChecklistComponent } from './pages/employers/emmployer-checklist/emmployer-checklist.component';
 import { SingleJobDetailsComponent } from './pages/employers/single-job-details/single-job-details.component';
-import { PostJobsComponent } from './pages/employers/post-jobs/post-jobs.component';
+import { PostJobsComponent, addShiftDialog } from './pages/employers/post-jobs/post-jobs.component';
 import { EmployerChecklistComponent } from './pages/employers/employer-checklist/employer-checklist.component';
 import { EmployerProfileComponent } from './pages/employers/employer-profile/employer-profile.component';
 import { EmployerMessagesComponent } from './pages/employers/employer-messages/employer-messages.component';
@@ -48,6 +51,7 @@ import { JobApplicationsComponent } from './pages/employers/job-applications/job
 import { ContractedjobsComponent } from './pages/employers/contractedjobs/contractedjobs.component';
 import { FindcandidatesComponent } from './pages/employers/findcandidates/findcandidates.component';
 import { PaymentsComponent } from './pages/employers/payments/payments.component';
+import { AutocompleteComponent } from './common/google-places-component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminSideBarComponent } from './pages/admin/admin-side-bar/admin-side-bar.component'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -73,6 +77,20 @@ import { ToastComponent } from './dialog/toast/toast.component';
 import { UserStateService } from './services/user-state.service';
 import { EmployeeProfileService } from './services/profile-employee/employee-profile.service';
 import { ProfilePicComponent } from './pages/jobseekers/profile-pic/profile-pic.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SnackbarService } from './services/snackbar/snackbar.service';
+import { } from '@agm/core';
+
+
+import { FateModule } from 'fate-editor';
+import { EmployerPostsComponent } from './pages/employers/employer-posts/employer-posts.component';
+import { StriphtmlPipe } from './common/striphtml.pipe';
+import { EnumsService } from './services/enums.service';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { LoaderSpinnerComponent } from './pages/loader-spinner/loader-spinner.component'; // <-- import the module
+
+
+
 
 @NgModule({
   declarations: [
@@ -81,11 +99,12 @@ import { ProfilePicComponent } from './pages/jobseekers/profile-pic/profile-pic.
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-
+    AutocompleteComponent,
     ApplicationFormComponent,
-
+addShiftDialog,
+verifyEmailDialog,
     EmployeeLoginComponent,
-
+    
     EmployerSignupComponent,
 
     ApplicantDashboardComponent,
@@ -167,6 +186,9 @@ import { ProfilePicComponent } from './pages/jobseekers/profile-pic/profile-pic.
     PasswordStrengthBar,
     ToastComponent,
     ProfilePicComponent,
+    EmployerPostsComponent,
+    StriphtmlPipe,
+    LoaderSpinnerComponent,
  
   
   ],
@@ -176,16 +198,20 @@ import { ProfilePicComponent } from './pages/jobseekers/profile-pic/profile-pic.
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+  FateModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    HttpClientModule,
+    NgxPaginationModule
+    
     
     
   ],
-  providers: [TestserviceService, SignupService, UserStateService, EmployeeProfileService],
+  providers: [TestserviceService, SignupService, UserStateService, EmployeeProfileService, SnackbarService,EnumsService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog,MessagesModalComponent,BanModalComponent]
+  entryComponents: [DialogOverviewExampleDialog,MessagesModalComponent,BanModalComponent,addShiftDialog, verifyEmailDialog]
 })
 export class AppModule { }

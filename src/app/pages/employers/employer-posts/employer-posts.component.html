@@ -1,0 +1,64 @@
+<app-header>
+
+  </app-header>
+  <section class="jobguru-breadcromb-area">
+    
+    
+    </section>
+
+<section class="candidate-dashboard-area section_70">
+    <div class="container">
+       <div class="row">
+         <div class="col-md-12">
+   <h3 style="color: black">My Job Posts</h3>
+   <hr>
+         </div>
+<div class="col-md-12">
+
+
+<div class="job-grid-right candidate-list-page" *ngIf=" (myJobPosts | async)?.data.length>0">
+   
+    <!-- end job head -->
+    <div class="candidate-list-page">
+       <!-- End Single Candidate List -->
+       <div class="single-candidate-list" *ngFor="let post of (myJobPosts | async)?.data">
+          <div class="main-comment">
+             <div class="candidate-image">
+                <img src="{{(auth.user | async )?.photoURL}}" alt="author">
+             </div>
+             <div class="candidate-text">
+                <div class="candidate-info">
+                   <div class="candidate-title">
+                      <h3><a href="#">{{post.basicDetails.job_title}}</a></h3>
+                      <span class="fa fa-star starred"></span>
+                      <span class="fa fa-star starred"></span>
+                      <span class="fa fa-star starred"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                   </div>
+                   <p><span class="fa fa-map-marker"></span> {{post.basicDetails.location}}</p>
+                </div>
+                <div class="candidate-text-inner">
+                   <p [innerHTML]="post.basicDetails.description |  slice:0:100" style="font-size: small"></p>
+                </div>
+                <div class="candidate-text-bottom">
+                   <div class="candidate-text-box">
+                      <p class="open-icon"><i class="fa fa-clock"></i> Type: {{post.basicDetails.job_type}} </p>
+                     
+                      <p class="varify"><i class="fa fa-clock"></i> Posted On: {{post.basicDetails.posted_date  |  date :'medium'}}</p>
+                   </div>
+                   <div class="candidate-action">
+                      <a [routerLink]="['/employer/job',post.basicDetails.id]" class="jobguru-btn-2">View Post</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- End Single Candidate List -->
+      </div>
+      
+      
+    </div>
+  
+ </div>
+</div></div></section><app-footer></app-footer>

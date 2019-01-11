@@ -20,63 +20,66 @@
             <div class="col-lg-7 col-md-12">
                <div class="dashboard-right">
                   <div class="candidate-profile">
-                     <div class="candidate-single-profile-info">
-                        <div class="single-resume-feild resume-avatar">
-                           <div class="resume-image">
-                              <img src="assets/img/author.jpg" alt="resume avatar">
-                              <div class="resume-avatar-hover">
-                                 <div class="resume-avatar-upload">
-                                    <p>
-                                       <i class="fa fa-pencil"></i>
-                                       Edit
-                                    </p>
-                                    <input type="file">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                    <app-profile-pic></app-profile-pic>
                      <div class="candidate-single-profile-info">
                         <form>
                            <div class="resume-box">
                               <h3>Upload Goverment ID, SSN, Resume</h3>
-                              <p> You can only upload your government ID and SSN before approval, after approval this options will be locked. </p>
-                              <div class="single-resume-feild feild-flex-2">
-                                  <div class="single-input">
-                                     <label for="Phone">License</label>
-                                   <select>
-<option>Goverment ID</option>
-<option>Social Security</option>
-<option>Resume</option>
-
-
-                                   </select>
-                                  </div>
-                                  
-                               </div>
                               
-                               <div class="single-resume-feild feild-flex-2">
+                              
+                              
+                               <div class="single-resume-feild feild-flex-2"  *ngIf="!isGovernmentID()">
+                                
                                   <div class="single-input">
-                                      <label for="w_screen">Upload Scan of the License</label>
+                                   <label>upload Government ID</label>
                                       <div class="product-upload">
-                                         <p>
+                                         <p (click)="uploader.click()">
                                             <i class="fa fa-upload"></i>
                                             Max file size is 3MB,Suitable files are .jpg &amp; .pdf
+
                                          </p>
-                                         <input type="file" id="w_screen">
+                                         <input type="file" id="w_screen"  (change)="uploadFile($event,'governmentID')">
+                                         <p *ngIf="!governmentID" class="text-danger">You need to select Document to continue</p>
+                                         <p *ngIf="governmentID" >{{governmentID.name}}</p>
                                       </div>
                                    </div>
+                                  
                                </div>
-                               
-                              <div class="single-resume-feild ">
-                                 <div class="single-input">
-                                    <label for="Bio">Description</label>
-                                    <textarea id="Bio"></textarea>
+                               <div class="single-resume-feild feild-flex-2"  *ngIf="!isSocialSecurity()">
+                                  
+                                <div class="single-input">
+                                    <label>upload Social Security Number</label>
+                                    <div class="product-upload">
+                                       <p (click)="uploader.click()">
+                                          <i class="fa fa-upload"></i>
+                                          Max file size is 3MB,Suitable files are .jpg &amp; .pdf
+
+                                       </p>
+                                       <input type="file" id="w_screen"  (change)="uploadFile($event,'SSN')">
+                                       <p *ngIf="!SSN" class="text-danger">You need to select Document to continue</p>
+                                       <p *ngIf="SSN" >{{SSN.name}}</p>
+                                    </div>
                                  </div>
-                                 <div class="single-input">
-                                <button class="btn jobguru-btn-2">Add Document</button>  
-                                </div>
-                              </div>
+                                  
+                             </div>
+                             <div class="single-resume-feild feild-flex-2" *ngIf="!isResume()">
+                                  
+                                <div class="single-input">
+                                    <label>upload Resume</label>
+                                    <div class="product-upload">
+                                       <p (click)="uploader.click()">
+                                          <i class="fa fa-upload"></i>
+                                          Max file size is 3MB,Suitable files are .docx &amp; .pdf
+
+                                       </p>
+                                       <input type="file" id="w_screen" (change)="uploadFile($event,'RESUME')">
+                                       <p *ngIf="!selectedFile" class="text-danger">You need to select Document to continue</p>
+                                       <p *ngIf="selectedFile" >{{selectedFile.name}}</p>
+                                    </div>
+                                 </div>
+                                 
+                             </div>
+                              
                               
                            </div>
                            
@@ -101,11 +104,11 @@
                                    <h3><a href="#">Goverment ID</a></h3>
                                    
                                 </div>
-                                <p><span class="fa fa-file"></span><a>View Document</a> </p>
+                                <p *ngIf="isGovernmentID()"><span class="fa fa-file"></span><a href="{{isGovernmentID()}}">View Document</a> </p>
                              </div>
                              <div class="candidate-text-inner">
-                                <p>Description  Here if any</p>
-                               
+                                <p *ngIf="!isGovernmentID()" class="text-danger">Your government ID is not uploaded</p>
+                                <p *ngIf="isGovernmentID()" >Government ID is aleady uploaded</p>
                              </div>
                              <div class="candidate-text-bottom">
                                 
@@ -115,7 +118,7 @@
                                 </div>
                                 <div class="candidate-action">
                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   
                                 </div>
                              </div>
                           </div>
@@ -134,10 +137,11 @@
                                     <h3><a href="#">Resume</a></h3>
                                     
                                  </div>
-                                 <p><span class="fa fa-file"></span><a>View Document</a> </p>
+                                 <p *ngIf="isGovernmentID()"><span class="fa fa-file"></span><a href="{{isSocialSecurity()}}">View Document</a> </p>
                               </div>
                               <div class="candidate-text-inner">
-                                 <p>Description  Here if any</p>
+                                <p *ngIf="!isSocialSecurity()" class="text-danger">Your SSN is not uploaded</p>
+                                <p *ngIf="isSocialSecurity()" >Social Security is already Uploaded</p>
                                 
                               </div>
                               <div class="candidate-text-bottom">
@@ -148,7 +152,7 @@
                                  </div>
                                  <div class="candidate-action">
                                     <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   
                                  </div>
                               </div>
                            </div>
@@ -163,13 +167,14 @@
                            <div class="candidate-text">
                               <div class="candidate-info">
                                  <div class="candidate-title">
-                                    <h3><a href="#">Social Security</a></h3>
+                                    <h3><a href="#">Resume </a></h3>
                                     
                                  </div>
-                                 <p><span class="fa fa-file"></span><a>View Document</a> </p>
+                                 <p *ngIf="isGovernmentID()"><span class="fa fa-file"></span><a href="{{isResume()}}">View Document</a> </p>
                               </div>
                               <div class="candidate-text-inner">
-                                 <p>Description  Here if any</p>
+                                <p *ngIf="!isResume()" class="text-danger">Your Resume  is not uploaded</p>
+                                <p *ngIf="isResume()" >Your Resume is Uploaded</p>
                                 
                               </div>
                               <div class="candidate-text-bottom">
@@ -180,7 +185,7 @@
                                  </div>
                                  <div class="candidate-action">
                                     <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   
                                  </div>
                               </div>
                            </div>

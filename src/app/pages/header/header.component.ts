@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from '../../services/signup/signup.service';
 
@@ -8,7 +9,7 @@ import { SignupService } from '../../services/signup/signup.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private auth: SignupService) { }
+  constructor(private auth: SignupService, private router: Router) { }
 userID:any;
   ngOnInit() {
     if(this.auth.user){
@@ -16,8 +17,15 @@ userID:any;
         if (user){
           this.userID=user.uid
         }
+        if (this.userID){
+
+        }else{
+     this.router.navigate(["account/login"])
+        }
       })
     }
+
+    
   }
 
   signOut(){

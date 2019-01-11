@@ -20,52 +20,50 @@
             <div class="col-lg-7 col-md-12">
                <div class="dashboard-right">
                   <div class="candidate-profile">
+                    <app-profile-pic></app-profile-pic>
                      <div class="candidate-single-profile-info">
-                        <div class="single-resume-feild resume-avatar">
-                           <div class="resume-image">
-                              <img src="assets/img/author.jpg" alt="resume avatar">
-                              <div class="resume-avatar-hover">
-                                 <div class="resume-avatar-upload">
-                                    <p>
-                                       <i class="fa fa-pencil"></i>
-                                       Edit
-                                    </p>
-                                    <input type="file">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="candidate-single-profile-info">
-                        <form>
+                        <form [formGroup]="certificateForm" (ngSubmit)="addCertification()">
                            <div class="resume-box">
                               <h3>Certificates/Licenses/Trainings</h3>
                               <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                      <label for="Phone">License</label>
-                                     <input type="text"placeholder="school">
+                                     <input type="text"placeholder="License" formControlName="license">
+                                     <p *ngIf="license.touched && license.invalid" class="text-danger">what is the name of your license</p>
+                                    </div>
                                   </div>
                                   
-                               </div>
+                              
                                <div class="single-resume-feild feild-flex-2">
-                                  <div class="single-input">
-                                     <label for="Phone">Issued On :</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to3" class="datepicker">
-                                  </div>
-                                  <div class="single-input">
-                                     <label for="Email">Expires On:</label>
-                                     <input type="text" placeholder="06-11-2017" id="datepicker_to2" class="datepicker">
-                                  </div>
+                                <div class="single-input">
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="From" formControlName="issuedOn">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker md-format="Y-m-d"></mat-datepicker>
+                                  </mat-form-field>
+                                  <p *ngIf="issuedOn.touched && issuedOn.invalid" class="text-danger">When was your license issued</p>
+                                </div>
+                                <div class="single-input">
+                                  <mat-form-field>
+                                    <input matInput [matDatepicker]="picker2" placeholder="To" formControlName="expiresOn">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2  md-custom-clean-mask="false" 
+                                    md-custom-restrict="reject" ></mat-datepicker>
+                                  </mat-form-field>
+                                  <p *ngIf="expiresOn.touched && expiresOn.invalid" class="text-danger">when is your license expiring</p>
+                                </div>
                                </div>
                                <div class="single-resume-feild feild-flex-2">
                                   <div class="single-input">
                                       <label for="w_screen">Upload Scan of the License</label>
                                       <div class="product-upload">
-                                         <p>
+                                         <p  (click)="uploader.click()"> 
                                             <i class="fa fa-upload"></i>
                                             Max file size is 3MB,Suitable files are .jpg &amp; .pdf
                                          </p>
-                                         <input type="file" id="w_screen">
+                                         <input type="file" id="w_screen" formControlName="file" (change)="uploadFile($event)">
+                                         <p class="text-primary">{{selectedFile?.name}}</p>
+                                         <p *ngIf="file.invalid" class="text-danger">You must upload a scan of license to continue</p>
                                       </div>
                                    </div>
                                </div>
@@ -73,15 +71,26 @@
                               <div class="single-resume-feild ">
                                  <div class="single-input">
                                     <label for="Bio">Description</label>
-                                    <textarea id="Bio"></textarea>
+                                    <textarea formControlName="description" ></textarea>
+                                    
                                  </div>
                                  <div class="single-input">
                                 <button class="btn jobguru-btn-2">Add License</button>  
                                 </div>
                               </div>
+                              <div *ngIf="certificateForm.errors">
+                                <div class="notification danger"  id="signUpError">
+                                    <span>Please fill all the fields correctly
+                                    </span>
+                                    <button class="close-ntf" type="button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                               
+                            </div>
                               
                            </div>
-                           
+                         
                            
                            
                         </form>
@@ -92,21 +101,22 @@
                  <!-- end job head -->
                  <div class="candidate-list-page">
                     <!-- End Single Candidate List -->
-                    <div class="single-candidate-list">
+                    <div class="single-candidate-list" *ngFor="let certificate of (certificates | async)?.data;let count=index">
                        <div class="main-comment">
                           <div class="candidate-image">
-                             <h3>1. </h3>
+                             <h3>{{count+1}} </h3>
                           </div>
                           <div class="candidate-text">
                              <div class="candidate-info">
                                 <div class="candidate-title">
-                                   <h3><a href="#">Nursing License</a></h3>
+                                   <h3><a href="#">{{certificate.license}}</a></h3>
                                    
                                 </div>
-                                <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
+                                <p><span class="fa fa-clock"></span>{{certificate.issued_on}}-{{certificate.expires_on}} </p>
                              </div>
                              <div class="candidate-text-inner">
-                                <p>Description  Here if any</p>
+                                <p>{{certificate.description}}</p>
+                                <a href="{{httpUrl+'/files/documents/'+certificate.document}}">{{certificate.document}}</a>
                                
                              </div>
                              <div class="candidate-text-bottom">
@@ -116,79 +126,13 @@
                                   
                                 </div>
                                 <div class="candidate-action">
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                   <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
+                                   <button  class=" btn jobguru-btn-2" (click)="removeCertificate(certificate.id)"><span class="fa fa-trash"></span></button>
+                                   
                                 </div>
                              </div>
                           </div>
                        </div>
                     </div>
-                    <!-- End Single Candidate List -->
-                   
-                    <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>3. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Nursing License</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Description  Here if any</p>
-                                
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                  
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Single Candidate List -->
-                     <div class="single-candidate-list">
-                        <div class="main-comment">
-                           <div class="candidate-image">
-                              <h3>3. </h3>
-                           </div>
-                           <div class="candidate-text">
-                              <div class="candidate-info">
-                                 <div class="candidate-title">
-                                    <h3><a href="#">Nursing License</a></h3>
-                                    
-                                 </div>
-                                 <p><span class="fa fa-clock"></span> 10/11/2017 - 10/12/2018 </p>
-                              </div>
-                              <div class="candidate-text-inner">
-                                 <p>Description  Here if any</p>
-                                
-                              </div>
-                              <div class="candidate-text-bottom">
-                                 
-                                 <div class="candidate-text-box">
-                                  
-                                   
-                                 </div>
-                                 <div class="candidate-action">
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-trash"></span></a>
-                                    <a href="#" class="jobguru-btn-2"><span class="fa fa-pencil"></span></a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Single Candidate List -->
                  </div>
             </div>
             <div class="col-lg-3 col-md-12 dashboard-left-border">

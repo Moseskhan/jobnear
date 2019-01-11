@@ -1,0 +1,11 @@
+<mat-card>Verify Email Address</mat-card>
+<p>An email will be sent to your email, Click on the link to verify Email address</p>
+
+<button mat-raised-button color="accent" (click)="verifyEmail()">Click Here</button>
+<div class="notification success" *ngIf="emailSent" >
+        <span>An email has been sent to your email address
+        </span>
+        <button class="close-ntf" type="button">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>

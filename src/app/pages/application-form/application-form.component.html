@@ -1,0 +1,210 @@
+<app-header></app-header>
+<!-- Single Candidate Start -->
+<section class="single-candidate-page section_70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-lg-6">
+        <div class="single-candidate-box">
+          <div class="single-candidate-img">
+            <img src="{{employerImage}}" alt="single candidate" />
+          </div>
+          <div class="single-candidate-box-right">
+            <h4>{{(jobDetails | async)?.data.basicDetails.job_title }}</h4>
+
+            <p>{{employerDisplayName}}</p>
+            <div class="job-details-meta">
+
+              <p><i class="fa fa-calendar"></i> {{ (jobDetails | async)?.data.basicDetails.posted_date | date:'medium'
+                }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-6">
+        <div class="single-candidate-action">
+          <a href="#" class="candidate-contact" *ngIf="(auth.user | async)?.role=='EM'"><i class="fa fa-star"></i>Find
+            Potential Candidates</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Single Candidate End -->
+
+
+<!-- Single Candidate Bottom Start -->
+<section class="single-candidate-bottom-area section_70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-lg-3">
+        <div class="single-candidate-widget-2">
+          <h3>Job Overview</h3>
+          <ul class="job-overview">
+            <li>
+              <h4><i class="fa fa-map-marker"></i> Location</h4>
+              <p>{{(jobDetails | async)?.data.basicDetails.location}}</p>
+            </li>
+            <li *ngIf="(jobDetails | async)?.data.shifts.length==0">
+              <h4><i class="fa fa-money"></i>Payment Based On {{(jobDetails | async)?.data.basicDetails.rateBasis}}</h4>
+              <p>{{(jobDetails | async)?.data.basicDetails.rate | currency}}</p>
+            </li>
+            <li>
+              <h4><i class="fa fa-thumb-tack"></i> Job Type</h4>
+              <p>{{(jobDetails | async)?.data.basicDetails.job_category}}</p>
+            </li>
+            <li>
+              <h4><i class="fa fa-clock-o"></i> Date Posted</h4>
+              <p>{{(jobDetails | async)?.data.basicDetails.posted_date | date : 'medium'}}</p>
+            </li>
+
+          </ul>
+        </div>
+        <div class="single-candidate-bottom-right">
+          <div class="single-candidate-widget-2">
+            <a  class="jobguru-btn-2" *ngIf="(jobDetails | async)?.data.basicDetails.status==false" style="color: white">
+              <i class="fa fa-paper-plane-o"></i>
+              Hire Pending
+            </a>
+            <a  class="jobguru-btn-2" *ngIf="(jobDetails | async)?.data.basicDetails.status==true" style="color: white">
+                    <i class="fa fa-paper-plane-o"></i>
+                    Hired
+                  </a>
+          </div>
+          
+
+
+        </div>
+      </div>
+      <div class="col-md-8 col-lg-9">
+
+        <div class="dashboard-right">
+          <div class="earnings-page-box manage-jobs">
+                <div class="manage-jobs-heading" *ngIf="!statusApplied">
+                        <h3>Job Application</h3>
+                      </div>
+                <loader-spinner *ngIf="loading"></loader-spinner>
+                <div class="single-candidate-widget-2" *ngIf="(jobDetails | async)?.data.shifts.length>0">
+                        <h3>Shifts</h3>
+                        <ul class="job-overview" *ngFor="let shift of (jobDetails | async)?.data.shifts">
+                          <li>
+                            <h4><i class="fa fa-briefcase"></i> {{shift.day_of_week}}</h4>
+                            <p>Rate of Pay: {{shift.rate_per_hour | currency}}</p>
+                            <p>Start Date : {{shift.start_date | date: 'medium'}}</p>
+                            <p>Start Tme : {{shift.time_from }}</p>
+                            <p>End Time Tme : {{shift.time_from }}</p>
+                          </li>
+                          <hr>
+                        </ul>
+            
+            
+                      </div>
+            <div class="manage-jobs-heading" *ngIf="!statusApplied">
+              <h3>Submit a Job Application</h3>
+            </div>
+           
+            <div class="manage-jobs-heading" *ngIf="statusApplied">
+                   
+            </div>
+                 
+            <div class="new-job-submission" *ngIf="statusApplied">
+              <form>
+                <div class="resume-box">
+                        <mat-card class="example-card">
+                                <mat-card-header>
+                                  <div mat-card-avatar class="example-header-image"></div>
+                                  <h3>Applied On: {{applicationDetails.date | date: 'medium'}}</h3>
+                                  <mat-card-subtitle>  </mat-card-subtitle>
+                                  
+                                </mat-card-header>
+                               
+                                <mat-card-content>
+                                  <p [innerHTML]="applicationDetails.cover_letter">
+                                   
+                                  </p>
+                                  <h3>Attached Files</h3>
+                                  <mat-chip-list>
+                                        <mat-chip color="primary" selected *ngFor="let file of uploadedFiles"  >
+                                          <a href="{{server}}/files/documents/{{file.document_url}}" style="color: white" target="_blank">{{file.document_url}}</a>
+                                        </mat-chip>
+                                      </mat-chip-list>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                  <button  class="btn jobguru-btn-2 pull-left" (click)="changeTerms()"><span class="fa fa-refresh"></span> Change Terms </button>
+                                  <button  class="btn jobguru-btn-2 pull-right"(click)="deleteApplication()"> <span class="fa fa-remove"></span> Cancel Application</button>
+                                  <br><br>
+                                </mat-card-actions>
+                              </mat-card>
+                </div>
+              </form>
+            </div>
+          
+          <div class="new-job-submission" *ngIf="!statusApplied">
+            <form>
+              <div class="resume-box">
+
+
+
+
+
+
+
+
+                <div class="single-resume-feild">
+                  <div class="single-input">
+                    <label for="j_desc">Cover Letter</label>
+                    <fate-ui uiId="description"></fate-ui>
+                    <fate-input uiId="description" [(ngModel)]="coverLetter" [ngModelOptions]="{standalone: true}"
+                      style="height: 400px"></fate-input>
+                    <p *ngIf="errorCoverLetter" class="text-danger">Cover Letter is required</p>
+                  </div>
+                </div>
+                <div class="single-resume-feild">
+                        <div class="single-input">
+                          <label for="j_desc">Propose Pay Rate</label>
+                           <input type="text" [(ngModel)]="payRate" [ngModelOptions]="{standalone: true}">
+                          <p *ngIf="errorPayRate" class="text-danger">Pay Rate is required</p>
+                        </div>
+                        <div class="single-input">
+                                <label for="j_desc">Rate of Pay Basis</label>
+                                 <input type="text" [(ngModel)]="payRateBasis" [ngModelOptions]="{standalone: true}">
+                                <p *ngIf="errorPayBasis" class="text-danger">Pay basis is required</p>
+                              </div>
+                      </div>
+                <div class="single-resume-feild upload_file">
+                  <div class="product-upload">
+                    <p (click)="uploader.click()">
+                      <i class="fa fa-upload"></i>
+                      Add File Attachments
+                    </p>
+                    <input type="file" id="w_screen" #uploader (change)="addFile($event)">
+                  </div>
+
+                </div>
+
+                <mat-chip-list>
+                  <mat-chip color="primary" selected *ngFor="let file of filesToUpload" (click)="onFileClick(file)">{{file.name}}
+                    <mat-icon matChipRemove (click)="removeFile(file)">cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+
+
+
+              </div>
+              <div class="single-input submit-resume">
+                <button type="submit" (click)="submitApplication()">Submit Application</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+</section>
+<!-- Single Candidate Bottom End -->
+
+<app-footer></app-footer>

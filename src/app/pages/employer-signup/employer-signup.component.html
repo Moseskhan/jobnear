@@ -41,57 +41,67 @@
                 <div class="login-title">
                    <h3>Employer registration</h3>
                 </div>
-                <form>
+                <form  [formGroup]="employerSignUpForm" (ngSubmit)="employerSignUp()">
                    <div class="single-login-field">
-                      <input type="text" placeholder="Full Name of Representative">
+                      <input type="text" placeholder="Full Name of Representative" formControlName="fullName">
+                      <p *ngIf="fullName.touched && fullName.invalid" class="text-danger"> Your full Name is required</p>
                    </div>
                    <div class="single-login-field">
-                    <input type="text" placeholder="Company Name/Employer Name">
+                    <input type="text" placeholder="Company Name/Employer Name" formControlName="companyName">
+                    <p *ngIf="companyName.touched && companyName.invalid"  class="text-danger"> Company Name is required</p>
                  </div>
                  <div class="single-login-field">
-                    <input type="text" placeholder="Industry">
+                    <input type="text" placeholder="Industry" formControlName="industry">
+                    <p *ngIf="industry.touched && industry.invalid"  class="text-danger"> Industry is required</p>
+                 </div>
+                 <div class="single-login-field">
+                    <input type="text" placeholder="Phone Number" formControlName="phoneNumber">
+                    <p *ngIf="phoneNumber.touched && phoneNumber.invalid"  class="text-danger"> Phone Number is required</p>
                  </div>
                    <div class="single-login-field">
-                      <input type="email" placeholder="Email Addresss">
+                      <input type="email" placeholder="Email Addresss" formControlName="email">
+                      <p *ngIf="email.touched && email.invalid"  class="text-danger"> Email Address is required</p>
                    </div>
                    <div class="single-input single-login-field">
-                       <select>
+                       <select formControlName="shiftType">
                     <option>One time-shift</option>
                     <option>Recurring Shifts</option>
                     <option>Full-time Empployee</option>
                     <option>Part time shift</option>
-                  </select></div>
+                  </select>
+                  <p *ngIf="shiftType.touched && shiftType.invalid"  class="text-danger"> Nature of job is required</p></div>
                    <div class="single-login-field">
-                      <input type="password" placeholder="Choose Password">
+                      <input type="password" placeholder="Choose Password"  formControlName="password">
+                      <p *ngIf="password.touched && password.invalid "  class="text-danger"> Password is required</p>
                    </div>
                    <div class="single-login-field">
-                      <input type="password" placeholder="Confirm Password">
+                      <input type="password" placeholder="Confirm Password"  formControlName="cPassword">
+                      <p *ngIf="cPassword.touched && cPassword.invalid"  class="text-danger"> Confirm Password is required</p>
                    </div>
                    <div class="remember-row single-login-field clearfix">
-                      <p class="checkbox remember">
-                         <input class="checkbox-spin" type="checkbox" id="Freelance">
-                         <label for="Freelance"><span></span>accept terms & condition</label>
-                      </p>
-                   </div>
+                        <p class="checkbox remember">
+                           <input class="checkbox-spin" type="checkbox" id="Freelance" formControlName="terms" value="terms">
+                           <label for="Freelance"><span></span>accept terms & condition</label>
+  
+                        </p>
+                        
+                     </div>
                    <div class="single-login-field">
+                        <p *ngIf="terms.invalid"  class="text-danger"> You must accept Terms and Conditions to continue</p>
                       <button type="submit">Sign Up</button>
                    </div>
                 </form>
-                <div class="notification success"  id="signUpSuccess">
-                        <span>Your Account was created successfuly.
-                        </span>
-                        <button class="close-ntf" type="button">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <br>
-                    <div class="notification danger" style="display:none;background-color: red" id="signUpError">
+            
+                     <div *ngIf="employerSignUpForm.errors">
+                        <div class="notification danger" >
                         <span>Please fill all the fields to continue
                         </span>
                         <button class="close-ntf" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
+                    </div>
+                    
                 <div class="dont_have">
                    <a routerLink="/accounts/login">Already have an account?</a>
                 </div>

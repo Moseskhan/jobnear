@@ -1,0 +1,82 @@
+<h1 mat-dialog-title>Manage Shifts</h1>
+<div mat-dialog-content>
+  
+
+ <form  [formGroup]="shiftForm" (ngSubmit)="addShift()">
+ <mat-grid-list cols="2" rowHeight="4rem">
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Select Day of the Week" formControlName="dayOfWeek">
+                          <mat-option *ngFor="let day of data.weekDays" [value]="day">
+                           {{day}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <input matInput placeholder="From" type="time" formControlName="timeFrom">
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <input matInput placeholder="To" type="time" formControlName="timeTo" >
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="dp3" placeholder="Start Date" disabled formControlName="startDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                      </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <input matInput placeholder="How many Times for this Day  and time"  formControlName="numberOfTimes">
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Rate of Pay per Hour" formControlName="ratePerHour" >
+                </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <button  class=" btn btn-primary btn-circle"><span class="fa fa-plus-circle"></span> Add this Shift</button>
+     
+      <button class="btn btn-info pull-right" [mat-dialog-close]="shifts"><span class="fa fa-check"></span> Done</button>
+      <hr>
+      <mat-card class="example-card" *ngIf="shifts.length>0">
+            <mat-card-header>
+              
+              <mat-card-title>Shifts</mat-card-title>
+              <mat-card-subtitle>Added Shifts</mat-card-subtitle>
+            </mat-card-header>
+           
+            <mat-card-content>
+                    <div class="job-sidebar-list-single">
+                           
+                             <div class="sidebar-list-single" *ngFor="let shift of shifts">
+                                <div class="top-company-list">
+                                   <div class="company-list-logo">
+                                      <a href="#">
+                                      <span class="fa fa-clock-o fa-3x"></span>
+                                      </a>
+                                   </div>
+                                   <div class="company-list-details">
+                                      <h3><a href="#">{{shift.dayOfWeek}}</a></h3>
+                                      <p class="company-state"><i class="fa fa-clock-o "></i><strong>{{shift.timeFrom}} <span class="fa fa-arrow-right"></span> {{shift.timeTo}}</strong></p>
+                                      <p class="company-state"><i class="fa fa-tasks "></i><strong> Number of Times : {{shift.numberOfTimes}}</strong></p>
+                                      <p class="company-state"><i class="fa fa-dollar-sign "></i><strong> Rate of Pay : {{shift.ratePerHour | currency}}</strong></p>
+                                     
+                                   </div>
+                                   <div class="company-list-btn">
+                                      <button  class="btn jobguru-btn" (click)="removeShift(shift)"><i class="fa fa-check"></i>Remove</button>
+                                   </div>
+                                </div>
+                             </div></div>
+            </mat-card-content>
+           
+          </mat-card>
+      
+    </form>
+</div>

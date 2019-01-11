@@ -20,6 +20,10 @@ export class MainJobPageComponent implements OnInit {
 		});
 
   
-  }
+	}
+	
+	topSearch(keyword,nearme: HTMLInputElement,shift:HTMLInputElement){
+		console.log(keyword.value+nearme.checked+shift.checked)
+	}
 
 }

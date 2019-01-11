@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+import { JobsService } from './../../../services/jobs/jobs.service';
 import { Component, OnInit } from '@angular/core';
+import { SignupService } from './../../../services/signup/signup.service';
 
 @Component({
   selector: 'app-employer-dashboard',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employer-dashboard.component.css']
 })
 export class EmployerDashboardComponent implements OnInit {
-
-  constructor() { }
+  myjobPosts:any;
+  profilePercentage:any;
+  constructor(private JobsService: JobsService, private router: Router, private auth: SignupService) { }
 
   ngOnInit() {
+    this.getJobPosts();
+  }
+  getJobPosts(){
+    this.myjobPosts=this.JobsService.getEmployerJobPostsByID()
+  }
+  goToJobPosts(){
+    this.router.navigate(["/employer/myposts"])
+  }
+  calculatePercentageProfile(){
+  this.profilePercentage=50;
   }
 
 }

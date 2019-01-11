@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignupService } from './../../../services/signup/signup.service';
 
 @Component({
   selector: 'app-employer-main-sidebar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployerMainSidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: SignupService) { }
 
   ngOnInit() {
+    this.auth.user.subscribe(
+      response=>{
+        console.log(response);
+        if(response.role!=="EM"){
+          
+        }
+      },
+      error=>{
+
+      }
+    )
   }
+  
 
 }

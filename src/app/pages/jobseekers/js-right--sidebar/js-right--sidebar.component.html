@@ -1,9 +1,9 @@
 <div class="sigle-top-job">
     <div class="top-job-company-image">
        <h3>Availability</h3>
-       <p *ngIf="!(userInfo | async)?.availability">Availability Not Updated</p>
-<p *ngIf="(userInfo | async)?.availability!='fulltime' && (userInfo | async)?.availability">Available a Maximum of {{(userInfo | async)?.availability}} Hours a week</p>
-      <p *ngIf="((userInfo | async)?.availability)=='fulltime' && (userInfo | async)?.availability"> Available for a full-time oppotunity</p>
+       <p *ngIf="!(userInfo)?.availability">Availability Not Updated</p>
+<p *ngIf="(userInfo)?.availability!='fulltime' && (userInfo)?.availability">Available a Maximum of {{(userInfo)?.availability}} Hours a week</p>
+      <p *ngIf="((userInfo)?.availability)=='fulltime' && (userInfo)?.availability"> Available for a full-time oppotunity</p>
        <p></p>
     </div>
     <div class="top-job-company-desc">
@@ -31,7 +31,7 @@
  <div class="sigle-top-job">
   <div class="top-job-company-image">
      <h3>Language</h3>
-     <p *ngIf="(userInfo | async)?.language">{{(userInfo | async)?.language?.fluency}}   {{(userInfo | async)?.language?.language}}</p>
+     <p *ngIf="(userInfo)?.language">{{(userInfo)?.language?.fluency}}   {{(userInfo)?.language?.language}}</p>
   </div>
   <div class="top-job-company-desc">
     <div class="single-resume-feild feild-flex-2">
@@ -72,7 +72,7 @@
 <div class="sigle-top-job">
 <div class="top-job-company-image">
    <h3>Location</h3>
-   <p>{{(userInfo | async)?.address}},{{(userInfo | async)?.state}}, {{(userInfo | async)?.city}}, {{(userInfo | async)?.zip}}</p>
+   <p>{{(userInfo)?.address}},{{(userInfo)?.state}}, {{(userInfo)?.city}}, {{(userInfo)?.zip}}</p>
 </div>
 
 </div>

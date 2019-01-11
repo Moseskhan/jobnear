@@ -7,247 +7,149 @@
  <section class="candidate-dashboard-area section_70">
     <div class="container">
        <div class="row">
-          <div class="col-lg-3 col-md-12 dashboard-left-border">
-            <app-js-side-bar></app-js-side-bar>
-          </div>
-          <div class="col-lg-9 col-md-12">
-             <div class="dashboard-right">
-                
-                <div class="earnings-page-box manage-jobs">
-                   <div class="manage-jobs-heading">
-                      <h3>Dashboard</h3>
-                   </div>
-
-                   <div class="earnings-flex">
-                      <div class="single-earnings">
-                         <div class="earnings-icon">
-                            <i class="fa fa-line-chart"></i>
-                         </div>
-                         <h4>Job Invites</h4>
-                         <h2>10</h2>
-                         <p (click)="getUser()">In the last 28 days</p>
-                      </div>
-                      <div class="single-earnings">
-                         <div class="earnings-icon">
-                            <i class="fa fa-line-chart"></i>
-                         </div>
-                         <h4>Nearby Available Jobs</h4>
-                         <h2>30</h2>
-                         <p></p>
-                         <p>In the last 28 days</p>
-                        
-                      </div>
-                      <div class="single-earnings">
-                          <div class="earnings-icon">
-                             <i class="fa fa-line-chart"></i>
-                          </div>
-                          <h4>Nearby Available </h4>
-                          <h2>30</h2>
-                          <p></p>
-                          <p>In the last 28 days</p>
-                         
-                       </div>
-                       
-                      <div class="single-earnings">
-                         <div class="earnings-icon">
-                            <i class="fa fa-line-chart"></i>
-                         </div>
-                         <h4>Pending Job Applications</h4>
-                         <h2>20</h2>
-                         <p></p>
-                         <p>In the last 28 days</p>
-                      </div>
-                   </div>
-
-                   <div class="balance-box-flex">
-                      <div class="transfer-balance single-balance-box ">
-                          <h3>My Profile <span><a routerLink="/jobseeker/profile">update profile</a></span></h3>
-                          <img src="assets/img/payoneer.jpg" alt="paypal" />
-                       </div>
-                       <div class="transfer-balance single-balance-box ">
-                          <h3>Profile Completeness <span><a routerLink="/jobseeker/checklist">Checklist</a></span></h3>
-                          <h5>Approval Status <span class="badge badge-success">approved <span class="fa fa-check"></span></span></h5>
-                          <br>
-                          <div class="progress">
-                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                            </div>
-                       </div>
-                       
-                      
-                     
-                   </div>
-                   <div class="balance-box-flex">
-                      <div class="my-balance single-balance-box ">
-                          <div class="widget_chart_analytics_right">
-                             <p>Last Login</p>
-                             <p>11/10/2018 7.40p.m</p>
-                          </div>
-                          <h3>Appearances</h3>
-                          <h2>56</h2>
-                          <p>Last 28 days</p>
-                          
-                       </div>
-
-                   </div>
-                   <div class="balance-transfer-btn">
-                      <a href="#" class="jobguru-btn-2">Go To Main Jobs Page</a>
-                   </div>
-                   <div class="manage-jobs-heading">
-                     <br>
-                      <h3>Jobs Matching Your Profile</h3>
-                   </div>
-                </div>
+         <div class="col-lg-2 col-md-3">
+            <div class="single-candidate-widget-2">
+               
+                <ul class="job-overview">
+                  <li (click)="goToSavedJobs()">
+                    <h4><i class="fa fa-map-marker"></i>Saved Jobs</h4>
+                    <p></p>
+                  </li></ul>
+         </div>
+         <div class="single-candidate-widget-2">
+               
+            <ul class="job-overview">
+              <li (click)="goToFavouriteJobs()">
+                <h4><i class="fa fa-map-marker"></i>Favourites</h4>
+                <p></p>
+              </li></ul>
+     </div>
+        </div>
+          <div class="col-lg-10 col-md-9">
+             <div class="">
+   
              </div>
 
              <div class="job-grid-right candidate-list-page">
+                  
                 <div class="browse-job-head-option">
-                   <div class="job-browse-search">
-                      <form>
-                         <input type="search" placeholder="Search Jobs Here...">
-                         <button type="submit"><i class="fa fa-search"></i></button>
-                      </form>
-                   </div>
-                   <div class="job-browse-action">
-                      <div class="email-alerts">
-                         <input type="checkbox" class="styled" id="b_1">
-                         <label class="styled" for="b_1">Only Jobs In my Town</label>
-                      </div>
-                      <div class="dropdown">
-                         <button class="btn-dropdown dropdown-toggle" type="button" id="dropdowncur" data-toggle="dropdown" aria-haspopup="true">Sort By</button>
-                         <ul class="dropdown-menu" aria-labelledby="dropdowncur">
-                            <li>Newest</li>
-                            <li>Oldest</li>
-                            <li>Open shifts</li>
-                            <li>Full-time</li>
-                            <li>Part Time</li>
-                         </ul>
-                      </div>
-                   </div>
+                        <div class="job-browse-search">
+                                <form >
+                                    <input type="search" placeholder="Search Jobs Here..." #keywordSearch>
+                                    <button type="submit" (click)="topSearch(keywordSearch, nearmeStatus,shiftStatus)"><i class="fa fa-search"></i></button>
+                                </form>
+                              </div>
+                              
+                              <div class="job-browse-action">
+                                 <div class="email-alerts">
+                                    <input type="checkbox" class="styled" id="b_1" #nearmeStatus (change)="topSearch(keywordSearch, nearmeStatus,shiftStatus)" value="near">
+                                    <label class="styled" for="b_1">Only near me</label>
+                                 </div>
+                                
+                                  
+                                 
+                              </div>
+                              <div class="job-browse-action">
+                                     <div class="email-alerts">
+                                        <input type="checkbox" class="styled" id="b_2" #shiftStatus (change)="topSearch(keywordSearch, nearmeStatus,shiftStatus)" value="shift">
+                                        <label class="styled" for="b_2">Only shifts</label>
+                                     </div>
                    
 
-                </div>
+                </div></div>
                 <!-- end job head -->
                 <div class="candidate-list-page">
+                  <loader-spinner *ngIf="loading"></loader-spinner>
                    <!-- End Single Candidate List -->
-                   <div class="single-candidate-list">
+                   <div class="single-candidate-list" *ngFor="let job of (jobList | async)?.data | paginate: { itemsPerPage: 10, currentPage: p }">
                       <div class="main-comment">
-                         <div class="candidate-image">
-                            <img src="assets/img/msg-2.png" alt="author">
-                         </div>
+                         
                          <div class="candidate-text">
                             <div class="candidate-info">
                                <div class="candidate-title">
-                                  <h3><a href="#">Job Title Here</a></h3>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star"></span>
-                                  <span class="fa fa-star"></span>
+                                  <h3><a [routerLink]="['/employer/job',job.basicDetails.id]">{{job.basicDetails.job_title}}</a></h3>
+                                  <div class="pull-right">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" class="accent" *ngIf="job.favourite.length>0"  matTooltip="Marked as Favorite By You">
+                                                <mat-icon>favorite</mat-icon>
+                                        </button>&nbsp;
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" class="accent" *ngIf="job.saved.length>0"  matTooltip="This Job is Saved">
+                                                <mat-icon>saved</mat-icon>
+                                        </button>&nbsp;
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" class="accent" *ngIf="job.flag.length>0"  matTooltip="You flagged the Job as Inapropriate">
+                                                <mat-icon>flag</mat-icon>
+                                        </button>&nbsp;
+                                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                      </button>
+                                      <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="jobActions.markFavourite(job.basicDetails.id)" *ngIf="job.flag.length>0">
+                                          <mat-icon>favorite</mat-icon>
+                                          <span>Favourite</span>
+                                        </button>
+                                        <button mat-menu-item (click)="jobActions.saveJob(job.basicDetails.id)">
+                                          <mat-icon>save job</mat-icon>
+                                          <span>Save Job</span>
+                                        </button>
+                                        <button mat-menu-item (click)="jobActions.flagInaappropriate(job.basicDetails.id)">
+                                          <mat-icon>flag</mat-icon>
+                                          <span>Flag as Inappropriate</span>
+                                        </button>
+                                        <button mat-menu-item (click)="applyJob(job.basicDetails.id)">
+                                            <mat-icon>reply</mat-icon>
+                                            <span>Apply this Job</span>
+                                          </button>
+
+                                      </mat-menu>
+                                  </div>
+                                 
                                </div>
-                               <p><span class="fa fa-map-marker"></span>Hillsborough, NJ</p>
+                               <p><span class="fa fa-map-marker"></span>  {{job.basicDetails.location}}</p>
                             </div>
                             <div class="candidate-text-inner">
-                               <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam eu velit cursus, tempor ipsum in, tempus lectus. Nullam tempus nisi id nisl luctus, non tempor justo molestie.</p>
+                               <p [innerHTML]="job.basicDetails.description |  slice:0:100  | striphtml "></p>
                             </div>
                             <div class="candidate-text-bottom">
                                <div class="candidate-text-box">
-                                  <p class="open-icon"><i class="fa fa-clock"></i> shift (10/12/2018 7.13 p.m - 12.00 p.m) </p>
-                                  <p class="company-state"><i class="fa fa-map-marker"></i> Manville, NJ</p>
-                                  <p class="varify"><i class="fa fa-check"></i> $50 / hr</p>
+                                    <p class="open-icon"><i class="fa fa-clock"></i> Type: {{enumService.getJobType(job.basicDetails.job_type)}} </p>
+                     
+                                    <p class="varify"><i class="fa fa-clock"></i> Posted On: {{job.basicDetails.posted_date  |  date :'medium'}}</p>
+                                  
                                </div>
                                <div class="candidate-action">
-                                  <a href="#" class="jobguru-btn-2">view Job</a>
+                                    <a [routerLink]="['/employer/job',job.basicDetails.id]" class="jobguru-btn-2">View Post</a>
                                </div>
                             </div>
                          </div>
                       </div>
                    </div>
                    <!-- End Single Candidate List -->
-                   <div class="single-candidate-list">
-                      <div class="main-comment">
-                         <div class="candidate-image">
-                            <img src="assets/img/msg-2.png" alt="author">
-                         </div>
-                         <div class="candidate-text">
-                            <div class="candidate-info">
-                               <div class="candidate-title">
-                                  <h3><a href="#">Job Title Here</a></h3>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star"></span>
-                               </div>
-                               <p><span class="fa fa-map-marker"></span> Hillsborough, NJ</p>
-                            </div>
-                            <div class="candidate-text-inner">
-                               <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam eu velit cursus, tempor ipsum in, tempus lectus. Nullam tempus nisi id nisl luctus, non tempor justo molestie.</p>
-                            </div>
-                            <div class="candidate-text-bottom">
-                               <div class="candidate-text-box">
-                                  <p class="open-icon"><i class="fa fa-clock"></i> Full-time </p>
-                                  <p class="company-state"><i class="fa fa-map-marker"></i> Morristown,NJ</p>
-                                  <p class="varify"><i class="fa fa-check"></i> 40,000/Yr</p>
-                               </div>
-                               <div class="candidate-action">
-                                  <a href="#" class="jobguru-btn-2">view Job</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <!-- End Single Candidate List -->
-                   <div class="single-candidate-list">
-                      <div class="main-comment">
-                         <div class="candidate-image">
-                            <img src="assets/img/msg-1.png" alt="author">
-                         </div>
-                         <div class="candidate-text">
-                            <div class="candidate-info">
-                               <div class="candidate-title">
-                                  <h3><a href="#">Job Title Here</a></h3>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star starred"></span>
-                                  <span class="fa fa-star"></span>
-                                  <span class="fa fa-star"></span>
-                               </div>
-                               <p><span class="fa fa-map-marker"></span> Hillsborough, NJ</p>
-                            </div>
-                            <div class="candidate-text-inner">
-                               <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam eu velit cursus, tempor ipsum in, tempus lectus. Nullam tempus nisi id nisl luctus, non tempor justo molestie.</p>
-                            </div>
-                            <div class="candidate-text-bottom">
-                               <div class="candidate-text-box">
-                                  <p class="open-icon"><i class="fa fa-clock"></i> Part-Time </p>
-                                  <p class="company-state"><i class="fa fa-map-marker"></i> Manville, Nj</p>
-                                  <p class="varify"><i class="fa fa-check"></i> 60,000/Yr</p>
-                               </div>
-                               <div class="candidate-action">
-                                  <a href="#" class="jobguru-btn-2">view Job</a>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
                   
+                    <div class="single-candidate-list"  *ngIf="(jobList | async)?.data.length<1 && loading==false">
+                        <div class="main-comment">
+                           
+                           <div class="candidate-text">
+                              <div class="candidate-info">
+                                 <div class="candidate-title">
+                                    <h3><a href="#">No Results For Your Search</a></h3>
+                                   
+                                 </div>
+                                 
+                              </div>
+                              <div class="candidate-text-inner">
+                                 <p >Try using more relevant keywords, which include your skills, your certifications and your previous work experience titles</p>
+                              </div>
+                              
+                           </div>
+                        </div>
+                     </div>
                   
-                </div>
-                <div class="pagination-box-row">
-                   <p>Page 1 of 6</p>
-                   <ul class="pagination">
-                      <li class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li>...</li>
-                      <li><a href="#">6</a></li>
-                      <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                   </ul>
-                </div>
+                
+                
              </div>
+             <pagination-controls (pageChange)="p = $event" *ngIf="(jobList | async)?.data.length>0"></pagination-controls>
           </div>
        </div>
-    </div>
+    </div></div>
  </section>
 
 <app-footer></app-footer>

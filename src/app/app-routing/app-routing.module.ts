@@ -1,3 +1,4 @@
+import { EmployerPostsComponent } from './../pages/employers/employer-posts/employer-posts.component';
 import { AdminMessagesComponent } from './../pages/admin/admin-messages/admin-messages.component';
 import { AdminEmployersComponent } from './../pages/admin/admin-employers/admin-employers.component';
 import { AdminTablePaymentsComponent } from './../pages/admin/admin-table-payments/admin-table-payments.component';
@@ -122,7 +123,7 @@ const routes: Routes = [
     component: EmployerDashboardComponent
   },
   {
-    path: "employer/job",
+    path: "employer/job/:jobID",
     component: SingleJobDetailsComponent
   },
   {
@@ -148,6 +149,10 @@ const routes: Routes = [
   {
     path: "employer/contracts",
     component: ContractedjobsComponent
+  },
+  {
+    path: "employer/myposts",
+    component: EmployerPostsComponent
   },
   {
     path: "employer/findcandidates",
@@ -200,6 +205,10 @@ const routes: Routes = [
   {
     path: "admin/messages",
     component: AdminMessagesComponent
+  }
+  ,{
+    path: "applyjob/:jobID",
+    component: ApplicationFormComponent
   }
 ];
 

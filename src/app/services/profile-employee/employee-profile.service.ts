@@ -1,15 +1,18 @@
+import { HttpClient } from '@angular/common/http';
+
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import { AngularFireStorage,AngularFireUploadTask } from 'angularfire2/storage';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeProfileService {
 uid:any;
-  constructor(private firestore: AngularFirestore, private snackbar: MatSnackBar, private storage: AngularFireStorage) { 
+  constructor(private firestore: AngularFirestore, private snackbar: MatSnackBar, private storage: AngularFireStorage, private http: HttpClient) { 
 
  this.uid=localStorage.getItem("uid");
   }
@@ -185,6 +188,20 @@ uid:any;
   getEmergencyInfo(){
     return this.firestore.collection("emergencyInfo").doc(this.uid).valueChanges();
   }
+  addCertification(certificateInfo){
+      return this.http.post(environment.httpUrl+"/profile/certifications", certificateInfo)
+  }
+  getCertificates(){
+      return this.http.get(environment.httpUrl+"/profile/certifications/"+this.uid, {headers: environment.headers})
+  }
+  deleteCertificate(id){
+    return this.http.delete(environment.httpUrl+"/profile/certifications/"+id, {headers: environment.headers})
+  }
+  getUserDisplayName(uid){
+    return this.firestore.collection("users").doc(uid).valueChanges();
+}
+ 
+
   
   
   states=[

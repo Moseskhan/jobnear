@@ -15,8 +15,27 @@
 @import './theme/css/responsive.css';
 @import './theme/css/style2.css';
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.blue-snackbar {
+    background: #2196F3;
+  }
+.error-snackbar{
+    background-color: red
 
-
+}
+.info-snackbar
+{
+    background-color: green
+}
+select{
+    width: 100%
+}
+.accent{
+    background-color: #673ab7;
+    color: white
+}
+.accent-color{
+    color: #673ab7
+} 
 
 
 

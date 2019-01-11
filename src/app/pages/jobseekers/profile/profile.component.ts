@@ -24,7 +24,7 @@ export interface socialLinks{
 })
 export class ProfileComponent implements OnInit {
 userInfo:any;
-myskills=[];
+myskills:any=[];
 states:any;
 selectedFile:any;
 contactInfo=new FormGroup({
@@ -39,7 +39,10 @@ contactInfo=new FormGroup({
   ngOnInit() {
     this.userInfo=this.profile.getUserInfo();
     this.profile.getUserInfo().subscribe((profile:any)=>{
-          this.myskills=profile.skills;
+      if(profile.skills){
+         this.myskills=profile.skills;
+      }
+         
     })
   }
   updateTitle(proffessionalTitle){
