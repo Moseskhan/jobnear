@@ -190,13 +190,16 @@ this.payRateBasis=this.applicationDetails.payRateBasis;
 
   }
   deleteApplication(){
+    this.loading=true;
     let userAndJobID={
       userID: localStorage.getItem("uid"),
       jobID: this.jobID
     }
     this.JobsService.deleteJobApplication(userAndJobID).subscribe(
       (response:any)=>{
+        this.loading=false;
         this.snackbar.alertSuccess("Job application was deleted successfully.")
+        this.router
       },
       error=>{
         console.log(error)
